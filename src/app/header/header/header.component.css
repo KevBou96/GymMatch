@@ -1,0 +1,31 @@
+.logo {
+    color: white;
+    font-size: 40px;
+    padding-left: 40px;
+    font-weight: bold;
+}
+
+.btn-one {
+    color: white;
+    border: 2px solid white;
+    font-weight: 600;
+    font-size: 20px;
+    width: 120px;
+    height: 50px;
+}
+
+.btn-one:hover {
+    background: #05445E;
+}
+
+.btn-login {
+    margin-right: 25px;
+}
+
+.btn-signup {
+    margin-right: 25px;
+}
+
+.navbar-nav {
+    flex-direction: row;
+}
