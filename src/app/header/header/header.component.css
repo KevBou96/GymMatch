@@ -5,17 +5,27 @@
     font-weight: bold;
 }
 
-.btn-one {
+.nav-item-tag {
     color: white;
     border: 2px solid white;
-    font-weight: 600;
+    font-weight: 500;
     font-size: 20px;
-    width: 120px;
-    height: 50px;
+    margin: 10px;
+    padding: 10px 15px;
+    border-radius: 15px;
+    text-decoration: none
 }
 
-.btn-one:hover {
+.nav-item-tag:hover {
     background: #05445E;
+}
+
+.nav-item-tag:active {
+    background: #05445E;
+}
+
+.navbar-right-item {
+    padding-right: 30px;
 }
 
 .btn-login {
@@ -26,6 +36,3 @@
     margin-right: 25px;
 }
 
-.navbar-nav {
-    flex-direction: row;
-}
