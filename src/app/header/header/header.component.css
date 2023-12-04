@@ -16,7 +16,7 @@
     text-decoration: none
 }
 
-.nav-item-tag:hover {
+.nav-item-tag:hover, .nav-item-tag:focus {
     background: #05445E;
 }
 
@@ -36,3 +36,34 @@
     margin-right: 25px;
 }
 
+.navbar-toggler {
+    margin-right: 10px;
+}
+
+@media screen and (max-width: 767px) {
+    .nav-item-tag {
+        color: white;
+        border: none;
+        font-weight: 500;
+        font-size: 20px;
+        margin: 10px;
+        padding: 10px 15px;
+        border-radius: 0;
+        text-decoration: none;
+        border-bottom: none !important;
+    }
+
+    .navbar-right-item {
+        padding-right: 0;
+        border-top: 1px solid white;
+    }
+
+    .nav-item {
+        border-bottom: 1px solid white;
+        padding: 10px 0;
+    }
+
+    #header {
+        padding-bottom: 0
+    };
+  }

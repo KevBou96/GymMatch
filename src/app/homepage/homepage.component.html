@@ -1,1 +1,45 @@
-<p>homepage works!</p>
+<!-- Caroussel component -->
+<ngb-carousel *ngIf="images">
+    <ng-template ngbSlide>
+    <img class='img-fluid' [src]="images[0]" alt="First slide">
+    <div class="carousel-caption">
+        <h3 class="main-line">Meet with others</h3>
+        <p class="main-description">Find other people passionate on the health lifestyle.</p>
+    </div>
+    </ng-template>
+    <ng-template ngbSlide>
+    <img class='img-fluid' [src]="images[1]" alt="Second slide">
+    <div class="carousel-caption">
+        <h3 class="main-line">Share your workouts</h3>
+        <p class="main-description">Post about your routines and fitness tips</p>
+    </div>
+    </ng-template>
+    <ng-template ngbSlide>
+    <img class='img-fluid' [src]="images[2]"  alt="Third slide">
+    <div class="carousel-caption">
+        <h3 class="main-line">Find the right coaches</h3>
+        <p class="main-description" >More than 10000 coaches and counting</p>
+    </div>
+    </ng-template>
+</ngb-carousel>
+
+<!-- Cards component -->
+<div class="container fluid">
+    <div class="row">
+        <div class="col-md-4 card-container">
+            <div class="card-box">
+                dsa
+            </div>
+        </div>
+        <div class="col-md-4 card-container">
+            <div class="card-box">
+                dsa
+            </div>
+        </div>
+        <div class="col-md-4 card-container">
+            <div class="card-box">
+                dsa
+            </div>
+        </div>
+    </div>
+</div>
