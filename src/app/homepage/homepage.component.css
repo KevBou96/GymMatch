@@ -47,3 +47,31 @@
     
   }
 
+  .icon-box {
+   
+    height: 50%;
+    padding: 35px;
+  }
+
+  .text-box {
+    height: 50%;
+    font-size: 20px;
+    font-weight: 500;
+    color: #189AB4;
+    text-align: center;
+    padding: 45px;
+  }
+
+  .icon-img {
+    height: 100%;
+    width: 100%;
+    object-fit: contain;
+  }
+
+  @media screen and (max-width: 767px) {
+    .card-box {
+      width: 250px;
+      height: 320px;
+      margin-bottom: 30px;
+    }
+  }

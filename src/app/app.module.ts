@@ -12,6 +12,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { LoginComponent } from './auth/login/login.component';
 import { SignUpComponent } from './auth/sign-up/sign-up.component';
 import { NgbCarousel } from '@ng-bootstrap/ng-bootstrap';
+import { PostComponent } from './posts/post/post.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { NgbCarousel } from '@ng-bootstrap/ng-bootstrap';
     HeaderComponent,
     FooterComponent,
     LoginComponent,
-    SignUpComponent
+    SignUpComponent,
+    PostComponent
   ],
   imports: [
     MatSlideToggleModule,
