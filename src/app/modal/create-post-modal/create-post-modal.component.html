@@ -1,0 +1,46 @@
+<div class="container">
+    <div class="row">
+        <div class="col title">
+            Create Post
+        </div>
+    </div>
+    <div class="row">
+        <div *ngIf="error" class="col">
+            <div class="alert-box">
+                {{ error }}
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <form *ngIf="!isLoading" class="create-post-form" [formGroup]="postForm" (ngSubmit)="createPost()"> 
+                <div class="form-group">
+                    <label for="title">Title</label>
+                    <input formControlName="title" type="text" id="title" class="form-control" minlength="6">
+                    <span *ngIf="postForm.get('title')?.invalid && postForm.get('title')?.touched" class="help-block">
+                        <span *ngIf="postForm.controls['title'].errors?.required" class="text-danger">Title is required</span>
+                    </span>
+                </div>
+                <div class="form-group">
+                    <label for="image">Image</label>
+                    <input type="file" id="image" name="image" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="content">Content</label>
+                    <textarea formControlName="content" rows="5" type="text" id="content" class="form-control"></textarea>
+                    <span *ngIf="postForm.get('content')?.invalid && postForm.get('content')?.touched" class="help-block">
+                        <span *ngIf="postForm.controls['content'].errors?.required" class="text-danger">Content is required</span>
+                    </span>
+                </div>
+                <div class="row">
+                    <div class="col submit-btn">
+                        <button type="submit" class="btn reg-btn" [disabled]="postForm.get('title')?.invalid && postForm.get('content')?.invalid">Create</button>
+                    </div>
+                </div>
+            </form>
+            <div class="spinner">
+                <app-loading-spinner *ngIf="isLoading"></app-loading-spinner>
+            </div>
+        </div>
+    </div>
+</div>

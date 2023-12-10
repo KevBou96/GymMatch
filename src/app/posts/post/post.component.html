@@ -1,1 +1,16 @@
-<p>post works!</p>
+
+<div class="container">
+    <div class="row">
+        <div class="col create-post" (click)="openCreatePostModal()">
+            <button class="btn reg-btn">New Post</button>
+        </div>
+    </div>
+    
+    <div *ngFor="let post of posts" class="posts">
+        <div>{{ post.title }}</div>
+        <div>{{ post.content }}</div>
+        <div>{{ post.imgurl }}</div>
+
+    </div>
+</div>
+
