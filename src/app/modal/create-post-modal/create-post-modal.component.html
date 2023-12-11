@@ -1,4 +1,7 @@
 <div class="container">
+    <div class="x-button">
+        <input type="image" src="../../../assets/icons/delete.png" class="x-icon" (click)="closeModal()">
+    </div>
     <div class="row">
         <div class="col title">
             Create Post
@@ -16,7 +19,7 @@
             <form *ngIf="!isLoading" class="create-post-form" [formGroup]="postForm" (ngSubmit)="createPost()"> 
                 <div class="form-group">
                     <label for="title">Title</label>
-                    <input formControlName="title" type="text" id="title" class="form-control" minlength="6">
+                    <input formControlName="title" type="text" id="title" class="form-control">
                     <span *ngIf="postForm.get('title')?.invalid && postForm.get('title')?.touched" class="help-block">
                         <span *ngIf="postForm.controls['title'].errors?.required" class="text-danger">Title is required</span>
                     </span>

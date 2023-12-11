@@ -5,12 +5,19 @@
             <button class="btn reg-btn">New Post</button>
         </div>
     </div>
-    
+    <div class="row">
+        <div class="col create-post" (click)="getPosts()">
+            <button class="btn reg-btn">Refresh</button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col create-post" (click)="getPost()">
+            <button class="btn reg-btn">get post</button>
+        </div>
+    </div>
     <div *ngFor="let post of posts" class="posts">
-        <div>{{ post.title }}</div>
-        <div>{{ post.content }}</div>
-        <div>{{ post.imgurl }}</div>
-
+        <div>{{ post.post_title }}</div>
+        <div>{{ post.post_content }}</div>
     </div>
 </div>
 

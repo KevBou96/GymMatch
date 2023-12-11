@@ -4,6 +4,7 @@ import { IPost, IPostResponseData } from 'src/app/interfaces/post.interface';
 import { Subscription, catchError } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
 import { CreatePostModalComponent } from 'src/app/modal/create-post-modal/create-post-modal.component';
+import { LoginComponent } from 'src/app/auth/login/login.component';
 
 @Component({
   selector: 'app-post',
@@ -13,6 +14,7 @@ import { CreatePostModalComponent } from 'src/app/modal/create-post-modal/create
 export class PostComponent implements OnInit, OnDestroy {
 
   posts: IPost[] = [];
+
   constructor(
     private postService: PostService,
     private matDialog: MatDialog
@@ -24,21 +26,41 @@ export class PostComponent implements OnInit, OnDestroy {
   }
 
   getPosts() {
-    this.postService.getPosts()
-    .subscribe((posts: IPost[]) => {
-      console.log(posts);
-      this.posts = posts;
-    }, err => {
-      console.log(err);
-    }) 
+    this.postService.getPosts().subscribe({
+      next: res => {
+        this.posts = res;
+        console.log(res);
+        
+      },
+      error: err => {
+        console.log(err);
+      }
+    })
+
   }
 
   openCreatePostModal() {
-    this.matDialog.open(CreatePostModalComponent, {
+   let dialogRef = this.matDialog.open(CreatePostModalComponent, {
       panelClass:'bg-color',
+    })
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(result);
+      
     })
   }
 
+  getPost() {
+    this.postService.getPost('1').subscribe({
+      next: post => {
+        console.log(post);
+      },
+      error: err => {
+        console.log(err);
+      }
+    })
+  }
+
+ 
   ngOnDestroy(): void {
   }
 }

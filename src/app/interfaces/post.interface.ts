@@ -4,7 +4,8 @@ export interface IPostResponseData {
 }
 
 export interface IPost {
-    title: string,
-    content: string,
+    post_id?: number,
+    post_title: string,
+    post_content: string,
     imgurl: string
 }
