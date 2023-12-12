@@ -18,3 +18,43 @@
     justify-content: center;
     margin: 50px;
 }
+
+.post-container {
+    border: 6px solid #05445E;
+    padding: 20px;
+    margin: 70px;
+}
+
+.post-date {
+    font-size: 20px;
+    font-weight: 500;
+    color: #05445E;
+}
+
+.post-title {
+    font-size: 40px;
+    font-weight: 600;
+    color: #05445E;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.options-row {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.option-btn {
+    font-size: 25px;
+    font-weight: 500;
+    color: #05445E;
+    margin: 0 15px;
+}
+
+.option-btn:hover, .option-btn:focus {
+    background: #189AB4;
+}
+
+.option-btn:active {
+    background: #189AB4;
+}

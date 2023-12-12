@@ -6,18 +6,21 @@
         </div>
     </div>
     <div class="row">
-        <div class="col create-post" (click)="getPosts()">
-            <button class="btn reg-btn">Refresh</button>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col create-post" (click)="getPost()">
-            <button class="btn reg-btn">get post</button>
-        </div>
-    </div>
-    <div *ngFor="let post of posts" class="posts">
-        <div>{{ post.post_title }}</div>
-        <div>{{ post.post_content }}</div>
+        <div class="col posts-container">
+            <div *ngFor="let post of posts; let i = index" class="post-container">
+                <div class="row">
+                    <div class="col">
+                        <div class="post-date">Post created by user on: {{ post.created_data }}</div>
+                        <div class="post-title"> {{ post.post_title }}</div>
+                        <div class="options-row">
+                                <button class="btn option-btn" (click)="getPost(post.post_id)">VIEW</button>
+                                <button class="btn option-btn">EDIT</button>
+                                <button class="btn option-btn">DELETE</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> 
     </div>
 </div>
 

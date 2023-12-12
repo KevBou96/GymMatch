@@ -19,10 +19,12 @@ export class PostService {
       {observe: 'response'}
       ).pipe(
         map((responseData: any) => {
+          console.log(responseData);
+          
           if (responseData.status !== 200) {
             throw 'error'
           }
-          return responseData.body.posts;
+          return JSON.parse(responseData.body.posts);
         }), catchError(err => {
         throw err
       })
@@ -46,9 +48,9 @@ export class PostService {
       )
   }
 
-  getPost(post_id: string) {
+  getPost(post_id: number | undefined) {
     return this.http.get<any>(
-      `http://localhost:8080/feed/post/${post_id}`,
+      "http://localhost:8080/feed/post/" + post_id,
       { observe: 'response'}
     ).pipe(
       map((responseData: any) => {

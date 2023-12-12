@@ -14,6 +14,8 @@ import { LoginComponent } from 'src/app/auth/login/login.component';
 export class PostComponent implements OnInit, OnDestroy {
 
   posts: IPost[] = [];
+  post: IPost;
+  postImgUrl: string;
 
   constructor(
     private postService: PostService,
@@ -23,6 +25,7 @@ export class PostComponent implements OnInit, OnDestroy {
 
 
   ngOnInit(): void {
+    this.getPosts();
   }
 
   getPosts() {
@@ -30,7 +33,6 @@ export class PostComponent implements OnInit, OnDestroy {
       next: res => {
         this.posts = res;
         console.log(res);
-        
       },
       error: err => {
         console.log(err);
@@ -49,16 +51,21 @@ export class PostComponent implements OnInit, OnDestroy {
     })
   }
 
-  getPost() {
-    this.postService.getPost('1').subscribe({
+  getPost(post_id: number | undefined) {
+    
+    this.postService.getPost(post_id).subscribe({
       next: post => {
         console.log(post);
+        this.post = post;
+        this.postImgUrl = 'http://localhost:8080/images/' + post.imgurl;
       },
       error: err => {
         console.log(err);
       }
     })
   }
+
+ 
 
  
   ngOnDestroy(): void {

@@ -32,7 +32,7 @@ export class CreatePostModalComponent implements OnInit {
     const newPost: IPost = {
       post_title: title,
       post_content: content,
-      imgurl: 'urlsample'
+      imgurl: 'trainer.png'
     }
     this.postService.createNewPost(newPost).subscribe({
       next: res => {
