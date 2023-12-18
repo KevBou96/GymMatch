@@ -26,7 +26,7 @@
                 </div>
                 <div class="form-group">
                     <label for="image">Image</label>
-                    <input type="file" id="image" name="image" class="form-control">
+                    <input type="file" id="image" name="image" class="form-control" (change)="onChange($event)">
                 </div>
                 <div class="form-group">
                     <label for="content">Content</label>
@@ -37,7 +37,7 @@
                 </div>
                 <div class="row">
                     <div class="col submit-btn">
-                        <button type="submit" class="btn reg-btn" [disabled]="postForm.get('title')?.invalid && postForm.get('content')?.invalid">Create</button>
+                        <button type="submit" class="btn reg-btn" [disabled]="postForm.get('title')?.invalid || postForm.get('content')?.invalid || !isImage ">Create</button>
                     </div>
                 </div>
             </form>

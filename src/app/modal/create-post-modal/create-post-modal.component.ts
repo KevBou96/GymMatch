@@ -15,13 +15,16 @@ export class CreatePostModalComponent implements OnInit {
   postForm: FormGroup;
   error: string = '';
   isLoading = false;
+  file: File;
+  isImage = false;
 
   constructor(private postService: PostService, public dialogRef: MatDialogRef<CreatePostModalComponent>) {}
 
   ngOnInit(): void {
     this.postForm = new FormGroup({
       'title': new FormControl(null, [Validators.required]),
-      'content': new FormControl(null, [Validators.required])
+      'content': new FormControl(null, [Validators.required]),
+      'image': new FormControl(null)
     })
   }
 
@@ -29,10 +32,13 @@ export class CreatePostModalComponent implements OnInit {
     this.isLoading = true;
     let title = this.postForm.value.title;
     let content = this.postForm.value.content;
+    console.log(this.postForm);
+    
     const newPost: IPost = {
       post_title: title,
       post_content: content,
-      imgurl: 'trainer.png'
+      image: this.file,
+      created_data: new Date()
     }
     this.postService.createNewPost(newPost).subscribe({
       next: res => {
@@ -44,6 +50,22 @@ export class CreatePostModalComponent implements OnInit {
         this.error = err.error.message;
       }
     })    
+  }
+
+  onChange(event: any) {
+    console.log(event.target.files[0]);
+    if (event.target.files[0].type === 'image/png' ||
+        event.target.files[0].type === 'image/jpg' || 
+        event.target.files[0].type === 'image/jpeg'
+        ) {
+          this.file = event.target.files[0];
+          this.isImage = true;
+          this.error = ""
+          }
+    else {
+      this.error = 'File must be an image';
+      this.isImage = false;
+    }
   }
 
   closeModal() {

@@ -14,8 +14,9 @@ import { LoginComponent } from 'src/app/auth/login/login.component';
 export class PostComponent implements OnInit, OnDestroy {
 
   posts: IPost[] = [];
-  post: IPost;
-  postImgUrl: string;
+  singlePost: IPost;
+  postObs: Subscription;
+  viewPost = false;
 
   constructor(
     private postService: PostService,
@@ -26,13 +27,15 @@ export class PostComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.getPosts();
+    this.postObs = this.postService.postChanged.subscribe((posts: IPost[]) => {
+      this.posts = posts
+    })
   }
 
   getPosts() {
     this.postService.getPosts().subscribe({
       next: res => {
         this.posts = res;
-        console.log(res);
       },
       error: err => {
         console.log(err);
@@ -51,13 +54,12 @@ export class PostComponent implements OnInit, OnDestroy {
     })
   }
 
-  getPost(post_id: number | undefined) {
-    
+  getPost(post_id: number) {
     this.postService.getPost(post_id).subscribe({
       next: post => {
-        console.log(post);
-        this.post = post;
-        this.postImgUrl = 'http://localhost:8080/images/' + post.imgurl;
+        this.viewPost = true;
+        this.singlePost = post;
+        this.singlePost.imgurl = 'http://localhost:8080/' + post.imgurl;
       },
       error: err => {
         console.log(err);
@@ -65,9 +67,21 @@ export class PostComponent implements OnInit, OnDestroy {
     })
   }
 
- 
+  deletePost(post_id: number, index: number) {  
+    this.postService.deletePost(post_id).subscribe({
+      next: res => {
+        this.postService.deletePostLocal(index);
+        console.log(res);
+      },
+      error: err => {
+        console.log(err);
+      }
+    })
+  }
 
- 
   ngOnDestroy(): void {
+    this.postObs.unsubscribe()
   }
 }
+
+// background-color: #f3f2f1;

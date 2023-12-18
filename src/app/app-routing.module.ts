@@ -7,7 +7,7 @@ import { PostComponent } from './posts/post/post.component';
 import { HttpClientModule } from '@angular/common/http';
 
 const routes: Routes = [
-  { path: '', component: PostComponent},
+  { path: '', component: HomepageComponent},
   { path: 'login', component: LoginComponent},
   { path: 'sign-up', component: SignUpComponent},
   { path: 'posts', component: PostComponent}

@@ -5,22 +5,27 @@
             <button class="btn reg-btn">New Post</button>
         </div>
     </div>
-    <div class="row">
+    <div *ngIf="posts" class="row">
         <div class="col posts-container">
             <div *ngFor="let post of posts; let i = index" class="post-container">
                 <div class="row">
                     <div class="col">
-                        <div class="post-date">Post created by user on: {{ post.created_data }}</div>
+                        <div class="post-date">Post created by user on {{ post.created_data | date }}</div>
                         <div class="post-title"> {{ post.post_title }}</div>
                         <div class="options-row">
-                                <button class="btn option-btn" (click)="getPost(post.post_id)">VIEW</button>
-                                <button class="btn option-btn">EDIT</button>
-                                <button class="btn option-btn">DELETE</button>
+                                <button class="btn option-btn" (click)="getPost(post.post_id!)">VIEW</button>
+                                <button class="btn option-btn edit-btn">EDIT</button>
+                                <button class="btn option-btn delete-btn" (click)="deletePost(post.post_id!, i)">DELETE</button>   
                         </div>
+                       
                     </div>
                 </div>
             </div>
+           
         </div> 
+    </div>
+    <div *ngIf="posts.length == 0" class="row">
+        No post available
     </div>
 </div>
 

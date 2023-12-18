@@ -1,1 +1,66 @@
-<p>sign-up works!</p>
+<div class="container-fluid">
+    <div class="box-container">
+        <div class="form-container">
+            <div class="row">
+                <div class="col title">
+                    SIGN UP
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <form class="create-post-form" [formGroup]="signUpForm" (ngSubmit)="createUser()">
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label for="firstName">Name</label>
+                                    <input formControlName="firstName" type="text" id="firstName" class="form-control ">
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="lastName">Last Name</label>
+                                    <input formControlName="lastName" type="text" id="lastName" class="form-control ">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="radio-btn">
+                            <div class="form-check">
+                                <input type="radio" class="form-check-input" id="radio1" name="optradio" value="option1" checked>Male
+                                <label class="form-check-label" for="radio1"></label>
+                              </div>
+                              <div class="form-check">
+                                <input type="radio" class="form-check-input" id="radio2" name="optradio" value="option2">Female
+                                <label class="form-check-label" for="radio2"></label>
+                              </div>
+                              <div class="form-check">
+                                <input type="radio" class="form-check-input" id="radio3" name="optradio" value="option3">Other
+                                <label class="form-check-label" for="radio3"></label>
+                              </div>
+                        </div>
+                    
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input formControlName="email" type="email" id="email" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Password</label>
+                            <input formControlName="password" type="password" id="password" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="confirmPassword">Confirm Password</label>
+                            <input formControlName="confirmPassword" type="password" id="confirmPassword" class="form-control">
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="check1" name="option1" value="something">
+                            <label class="form-check-label">Terms & Conditions</label>
+                        </div>
+                        <div class="row">
+                            <div class="col submit-btn">
+                                <button type="submit" class="btn reg-btn">Submit</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

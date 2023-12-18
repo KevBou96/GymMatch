@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { IPost, IPostResponseData } from '../interfaces/post.interface';
 import { Subject, of, throwError } from 'rxjs';
 import { catchError, exhaustMap, map, take, tap } from "rxjs/operators";
@@ -10,7 +10,7 @@ import { catchError, exhaustMap, map, take, tap } from "rxjs/operators";
 export class PostService {
 
   private posts: IPost[] = [];
-  // postsChanged = new Subject<IPost[]>();
+  postChanged = new Subject<IPost[]>();
   constructor(private http: HttpClient) { }
 
   getPosts() {
@@ -24,18 +24,31 @@ export class PostService {
           if (responseData.status !== 200) {
             throw 'error'
           }
-          return JSON.parse(responseData.body.posts);
-        }), catchError(err => {
+          return responseData.body.posts;
+        }), tap((posts: IPost[]) => {
+          this.posts = posts;
+        })
+        , catchError(err => {
         throw err
       })
     );
   }
 
   createNewPost(post: IPost) {
+    this.addPost(post);
+    const formData = new FormData();
+    formData.append("post_title", post.post_title);
+    formData.append("post_content", post.post_content);
+    formData.append("image", post.image);
     return this.http.post<any>(
-      'http://localhost:8080/feed/posts', 
-      post,
-      { observe: 'response'}
+      'http://localhost:8080/feed/post', 
+      formData,
+      {
+        // headers: new HttpHeaders({
+        //   'Content-Type': 'multipart/form-data'
+        // }),
+        observe: 'response',
+      },
       ).pipe(
         map((res: any) => {
           if (res.status !== 201) {
@@ -62,5 +75,33 @@ export class PostService {
         throw err
       })
     )
+  }
+
+  deletePost(post_id: number) {
+    return this.http.delete<any>(
+      'http://localhost:8080/feed/post/' + post_id,
+      { observe: 'response'}
+      ).pipe(
+        map((res: any) => {
+          console.log(res);
+          
+          if (res.status !== 201) {
+            throw 'error'
+          }
+          return res.body
+        }), catchError(err => {
+          throw err
+        })
+      )
+  }
+
+  addPost(post: IPost) {
+    this.posts.push(post);
+    this.postChanged.next(this.posts.slice());
+  }
+
+  deletePostLocal(index: number) {
+    this.posts.splice(index, 1);
+    this.postChanged.next(this.posts.slice())
   }
 }

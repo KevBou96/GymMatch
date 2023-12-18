@@ -22,7 +22,7 @@
 .post-container {
     border: 6px solid #05445E;
     padding: 20px;
-    margin: 70px;
+    margin: 70px 90px;
 }
 
 .post-date {
@@ -57,4 +57,12 @@
 
 .option-btn:active {
     background: #189AB4;
+}
+
+.edit-btn {
+    color: green;
+}
+
+.delete-btn {
+    color: red;
 }
