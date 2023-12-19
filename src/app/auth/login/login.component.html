@@ -1,1 +1,44 @@
-<p>login works!</p>
+<div class="container-fluid">
+    <div class="box-container">
+        <div class="form-container">
+            <div class="row">
+                <div class="col title">
+                    LOG IN
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <form class="create-post-form" [formGroup]="loginForm" (ngSubmit)="loginUser()">
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input formControlName="email" type="email" id="email" class="form-control">
+                            <div *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched"  class="alert-box">
+                                <div *ngIf="loginForm.get('email')?.errors?.['required']">Email is required.</div>
+                                <div *ngIf="loginForm.get('email')?.errors?.['email']">Must be an email.</div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Password</label>
+                            <input formControlName="password" type="password" id="password" class="form-control">
+                            <div *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched"  class="alert-box">
+                                <div *ngIf="loginForm.get('password')?.errors?.['required']">Password is required.</div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col submit-btn">
+                                <button type="submit" class="btn reg-btn">Login</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="already-user">
+                Forgot password? <a routerLink="/reset-password">Reset</a>
+            </div>
+            <div class="already-user">
+                Don't have an account? <a routerLink="/sign-up">Sign Up</a>
+            </div>
+        </div>
+    </div>
+</div>
+

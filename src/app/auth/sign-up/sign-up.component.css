@@ -49,14 +49,23 @@ input.ng-invalid.ng-touched {
 
 .alert-box {
     width: 100%;
-    border: 2px solid #dc3545;
     color: #dc3545;
     text-align: center;
     padding: 5px;
-    border-radius: 0.375rem;
+    font-size: 12px;
   }
 
 .radio-btn {
     display: flex;
     justify-content: space-around;
+}
+
+.already-user {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px
+}
+
+.already-user a{
+    margin-left: 5px;
 }

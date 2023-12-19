@@ -14,10 +14,16 @@
                                 <div class="col-md-6">
                                     <label for="firstName">Name</label>
                                     <input formControlName="firstName" type="text" id="firstName" class="form-control ">
+                                    <div *ngIf="signUpForm.get('firstName')?.invalid && signUpForm.get('firstName')?.touched"  class="alert-box">
+                                        <div *ngIf="signUpForm.get('firstName')?.errors?.['required']">Name is required.</div>
+                                    </div>
                                 </div>
                                 <div class="col-md-6">
                                     <label for="lastName">Last Name</label>
-                                    <input formControlName="lastName" type="text" id="lastName" class="form-control ">
+                                    <input formControlName="lastName" type="text" id="lastName" class="form-control">
+                                    <div *ngIf="signUpForm.get('lastName')?.invalid && signUpForm.get('lastName')?.touched"  class="alert-box">
+                                        <div *ngIf="signUpForm.get('lastName')?.errors?.['required']">Last name is required.</div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -39,26 +45,43 @@
                         <div class="form-group">
                             <label for="email">Email</label>
                             <input formControlName="email" type="email" id="email" class="form-control">
+                            <div *ngIf="signUpForm.get('email')?.invalid && signUpForm.get('email')?.touched"  class="alert-box">
+                                <div *ngIf="signUpForm.get('email')?.errors?.['required']">Email is required.</div>
+                                <div *ngIf="signUpForm.get('email')?.errors?.['email']">Must be an email.</div>
+                            </div>
                         </div>
                         <div class="form-group">
                             <label for="password">Password</label>
                             <input formControlName="password" type="password" id="password" class="form-control">
+                            <div *ngIf="signUpForm.get('password')?.invalid && signUpForm.get('password')?.touched"  class="alert-box">
+                                <div *ngIf="signUpForm.get('password')?.errors?.['required']">Password is required.</div>
+                                <div *ngIf="signUpForm.get('password')?.errors?.['pattern']">Password should be: <br>More than 9 characters <br>Have at least 1 uppercase <br>Have at least 1 number<br>Have at least 1 lowercase</div>
+                            </div>
                         </div>
                         <div class="form-group">
                             <label for="confirmPassword">Confirm Password</label>
                             <input formControlName="confirmPassword" type="password" id="confirmPassword" class="form-control">
+                            <div *ngIf="signUpForm.get('confirmPassword')?.invalid && signUpForm.get('confirmPassword')?.touched"  class="alert-box">
+                                <div *ngIf="signUpForm.get('confirmPassword')?.errors?.['required']">Passwords must match.</div>
+                            </div>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" id="check1" name="option1" value="something">
+                            <input formControlName="termsAndCon" class="form-check-input" type="checkbox" id="termsAndCon">
                             <label class="form-check-label">Terms & Conditions</label>
+                            <div *ngIf="signUpForm.get('termsAndCon')?.invalid && signUpForm.get('termsAndCon')?.touched"  class="alert-box">
+                                <div *ngIf="signUpForm.get('termsAndCon')?.errors?.['required']">Terms and Conditions must be checked</div>
+                            </div>
                         </div>
                         <div class="row">
                             <div class="col submit-btn">
-                                <button type="submit" class="btn reg-btn">Submit</button>
+                                <button type="submit" class="btn reg-btn" [disabled]="!signUpForm.valid">Submit</button>
                             </div>
                         </div>
                     </form>
                 </div>
+            </div>
+            <div class="already-user">
+                Already have an account? <a routerLink="/login">Log in</a>
             </div>
         </div>
     </div>
