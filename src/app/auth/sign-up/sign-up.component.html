@@ -7,6 +7,13 @@
                 </div>
             </div>
             <div class="row">
+                <div *ngIf="error" class="col">
+                    <div class="alert-error">
+                        {{ error }}
+                    </div>
+                </div>
+            </div>
+            <div class="row">
                 <div class="col">
                     <form class="create-post-form" [formGroup]="signUpForm" (ngSubmit)="createUser()">
                         <div class="form-group">

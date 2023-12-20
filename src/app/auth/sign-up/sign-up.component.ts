@@ -56,7 +56,7 @@ export class SignUpComponent implements OnInit {
         }) 
       },
       error: err => {
-        this.error = err
+        this.error = err.error.message
       }
     })
     console.log(user);
