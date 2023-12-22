@@ -41,7 +41,7 @@ export class LoginComponent implements OnInit {
         this.router.navigate(['posts'])
       },
       error: err => {
-        this.error = err
+        this.error = err.error.message
       }
     })
   }

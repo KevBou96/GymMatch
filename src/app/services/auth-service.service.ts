@@ -34,7 +34,7 @@ export class AuthServiceService {
       password
     };
     return this.http.post(
-      'http://localhost:8080/auth/signup',
+      'http://localhost:8080/auth/login',
       body,
       {
         observe: 'response'
