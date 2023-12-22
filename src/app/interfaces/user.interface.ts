@@ -4,5 +4,6 @@ export interface IUser {
     gender?: string,
     email: string,
     password: string,
-    profileImg?: File
+    profileImg?: File,
+    verified?: boolean
 }

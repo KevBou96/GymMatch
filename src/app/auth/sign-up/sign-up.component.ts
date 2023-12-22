@@ -13,7 +13,7 @@ export class SignUpComponent implements OnInit {
 
   signUpForm: FormGroup;
   passwordPattern: RegExp = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-])/
-  error: string
+  error: string;
 
   constructor(
     private authService: AuthServiceService,
@@ -46,7 +46,7 @@ export class SignUpComponent implements OnInit {
       firstName: firstName,
       lastName: lastName,
       email: email,
-      password: password
+      password: password,
     }
     this.authService.signUpUser(user).subscribe({
       next: res => {
@@ -56,6 +56,8 @@ export class SignUpComponent implements OnInit {
         }) 
       },
       error: err => {
+        console.log(err);
+        
         this.error = err.error.message
       }
     })
