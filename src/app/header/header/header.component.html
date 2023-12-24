@@ -7,6 +7,9 @@
         <div class="collapse navbar-collapse justify-content-end navbar-right-item" id="collapsibleNavbar" [ngbCollapse]="isCollapsed">
             <ul class="nav navbar-nav navbar-right">
                 <li class="nav-item" routerLinkActive="active">
+                    <a class="nav-item nav-item-tag" (click)="logout()">Log Out</a>
+                </li>
+                <li class="nav-item" routerLinkActive="active">
                     <a routerLink="/login" class="nav-item nav-item-tag">Log In</a>
                 </li>
                 <li class="nav-item" routerLinkActive="active">

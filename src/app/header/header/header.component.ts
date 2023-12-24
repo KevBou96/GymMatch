@@ -8,4 +8,9 @@ import { Component } from '@angular/core';
 export class HeaderComponent {
   isCollapsed = true;
 
+
+  logout() {
+    console.log('logut');
+    localStorage.clear()
+  }
 }

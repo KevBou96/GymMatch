@@ -37,7 +37,6 @@ export class SignUpComponent implements OnInit {
       this.error = 'Missing form fields';
       return
     }
-    console.log(this.signUpForm.get('termsAndCon'));
     const firstName = this.signUpForm.value.firstName;
     const lastName = this.signUpForm.value.lastName;
     const email = this.signUpForm.value.email;
@@ -50,7 +49,6 @@ export class SignUpComponent implements OnInit {
     }
     this.authService.signUpUser(user).subscribe({
       next: res => {
-        console.log(res);
         this.router.navigate(['login']).then(() => {
           console.log('sent to login');
         }) 
