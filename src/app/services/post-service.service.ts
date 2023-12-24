@@ -11,16 +11,21 @@ export class PostService {
 
   private posts: IPost[] = [];
   postChanged = new Subject<IPost[]>();
-  constructor(private http: HttpClient) { }
+  private token = localStorage.getItem('auth-token');
+  constructor(private http: HttpClient) { };
+
 
   getPosts() {
     return this.http.get<any>(
       'http://localhost:8080/feed/posts', 
-      {observe: 'response'}
+      {
+        headers: new HttpHeaders({
+          'Authorization' : 'Bearer ' + this.token
+        }),
+        observe: 'response'
+      }
       ).pipe(
         map((responseData: any) => {
-          console.log(responseData);
-          
           if (responseData.status !== 200) {
             throw 'error'
           }
@@ -44,10 +49,10 @@ export class PostService {
       'http://localhost:8080/feed/post', 
       formData,
       {
-        // headers: new HttpHeaders({
-        //   'Content-Type': 'multipart/form-data'
-        // }),
-        observe: 'response',
+        headers: new HttpHeaders({
+          'Authorization' : 'Bearer ' + this.token
+        }),
+        observe: 'response'
       },
       ).pipe(
         map((res: any) => {
@@ -64,7 +69,12 @@ export class PostService {
   getPost(post_id: number | undefined) {
     return this.http.get<any>(
       "http://localhost:8080/feed/post/" + post_id,
-      { observe: 'response'}
+      {
+        headers: new HttpHeaders({
+          'Authorization' : 'Bearer ' + this.token
+        }),
+        observe: 'response'
+      },
     ).pipe(
       map((responseData: any) => {
         if (responseData.status !== 200) {
@@ -80,7 +90,12 @@ export class PostService {
   deletePost(post_id: number) {
     return this.http.delete<any>(
       'http://localhost:8080/feed/post/' + post_id,
-      { observe: 'response'}
+      {
+        headers: new HttpHeaders({
+          'Authorization' : 'Bearer ' + this.token
+        }),
+        observe: 'response'
+      },
       ).pipe(
         map((res: any) => {
           console.log(res);

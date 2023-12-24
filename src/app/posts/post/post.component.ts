@@ -13,7 +13,7 @@ import { LoginComponent } from 'src/app/auth/login/login.component';
 })
 export class PostComponent implements OnInit, OnDestroy {
 
-  posts: IPost[] = [];
+  posts: IPost[];
   singlePost: IPost;
   postObs: Subscription;
   viewPost = false;
@@ -57,6 +57,8 @@ export class PostComponent implements OnInit, OnDestroy {
   getPost(post_id: number) {
     this.postService.getPost(post_id).subscribe({
       next: post => {
+        console.log(post);
+        
         this.viewPost = true;
         this.singlePost = post;
         this.singlePost.imgurl = 'http://localhost:8080/' + post.imgurl;

@@ -30,13 +30,14 @@ export class LoginComponent implements OnInit {
     if (this.loginForm.invalid) {
       this.error = 'Missing form values';
       console.log(this.error);
-      
       return
     }
     const email = this.loginForm.value.email;
     const password = this.loginForm.value.password;
     this.authService.loginUser(email, password).subscribe({
       next: res => {
+        const token = res.token;
+        localStorage.setItem('auth-token', token )
         console.log(res);
         this.router.navigate(['posts'])
       },
@@ -45,5 +46,4 @@ export class LoginComponent implements OnInit {
       }
     })
   }
-
 }
