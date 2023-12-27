@@ -12,7 +12,7 @@ export class PostService {
   private posts: IPost[] = [];
   postChanged = new Subject<IPost[]>();
   private token = localStorage.getItem('auth-token');
-  constructor(private http: HttpClient) { };
+  constructor(private http: HttpClient) {};
 
 
   getPosts() {
