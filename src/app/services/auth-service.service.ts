@@ -48,4 +48,22 @@ export class AuthServiceService {
       })
     )
   }
+
+  resetPassword(email: string) {
+    const body = {
+      email: email
+    }
+    return this.http.post('http://localhost:8080/auth/forgot-password', body, 
+    {
+      observe: 'response'
+    }
+    ).pipe(
+      map((responseData: any) => {
+        console.log(responseData);
+        return responseData.body;
+      }), catchError(err => {
+        throw err
+      })
+    )
+  }
 }
