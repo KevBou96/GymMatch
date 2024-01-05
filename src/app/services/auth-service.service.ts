@@ -49,7 +49,7 @@ export class AuthServiceService {
     )
   }
 
-  resetPassword(email: string) {
+  forgotPassword(email: string) {
     const body = {
       email: email
     }
@@ -66,4 +66,48 @@ export class AuthServiceService {
       })
     )
   }
+
+  verifyChangePasswordToken(token: string) {
+    return this.http.get('http://localhost:8080/auth/reset-password',
+    {
+      headers: new HttpHeaders({
+        'Authorization' : 'Bearer ' + token
+      }),
+      observe: 'response'
+    }
+    )
+    .pipe(
+      map((responseData: any) => {
+        return responseData.body;
+      }), catchError(err => {
+        console.log(err);
+        
+        throw err
+      })
+    )
+  }
+
+  postResetPassword(password: string, token: string) {
+    const body = {
+      password,
+    }
+    return this.http.post('http://localhost:8080/auth/reset-password', body,
+    {
+      headers: new HttpHeaders({
+        'Authorization' : 'Bearer ' + token
+      }),
+      observe: 'response'
+    }
+    )
+    .pipe(
+      map((responseData: any) => {
+        return responseData.body;
+      }), catchError(err => {
+        console.log(err);
+        
+        throw err
+      })
+    )
+  }
+
 }
