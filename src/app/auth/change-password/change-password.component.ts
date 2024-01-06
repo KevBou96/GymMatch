@@ -14,6 +14,9 @@ export class ChangePasswordComponent implements OnInit {
   error: string;
   passwordPattern: RegExp = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-])/
   token: string; 
+  spinner = false;
+  clicked = false;
+  successMessage: string;
 
   constructor (
     private route: ActivatedRoute,
@@ -36,12 +39,18 @@ export class ChangePasswordComponent implements OnInit {
       this.error = 'Missing Form Values';
       return
     }
+    this.spinner = true;
+    this.clicked = true;
     const password = this.resetPasswordForm.value.password;
     this.authService.postResetPassword(password, this.token).subscribe({
       next: res => {
+        this.spinner = false;
+        this.successMessage = "Your password has been reset, please login with you new password!"
         console.log(res);
       },
       error: err => {
+        this.spinner = false;
+        this.error = err.error.message;
         console.log(err);
       }
     })

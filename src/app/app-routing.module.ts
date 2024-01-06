@@ -8,12 +8,13 @@ import { HttpClientModule } from '@angular/common/http';
 import { ResetPasswordComponent } from './auth/reset-password/reset-password.component';
 import { ChangePasswordComponent } from './auth/change-password/change-password.component';
 import { changePasswordGuardGuard } from './auth/change-password-guard.guard';
+import { authGuard } from './auth/auth.guard';
 
 const routes: Routes = [
   { path: '', component: HomepageComponent},
   { path: 'login', component: LoginComponent},
   { path: 'sign-up', component: SignUpComponent},
-  { path: 'posts', component: PostComponent},
+  { path: 'posts', component: PostComponent, canActivate: [authGuard]},
   { path: 'reset-password', component: ResetPasswordComponent},
   { path: 'change-password/:token', component: ChangePasswordComponent, canActivate: [changePasswordGuardGuard]}  
 ];

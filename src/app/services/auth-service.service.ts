@@ -110,4 +110,21 @@ export class AuthServiceService {
     )
   }
 
+  verifyUserAuth(token: string | null) {
+    return this.http.get('http://localhost:8080/auth/verify-user-auth',
+    {
+      headers: new HttpHeaders({
+        'Authorization' : 'Bearer ' + token
+      }),
+      observe: 'response'
+    }
+    ).pipe(
+      map((responseData: any) => {
+        return responseData.body;
+      }), catchError(err => {
+        throw err
+      })
+    )
+  }
+
 }

@@ -12,6 +12,8 @@ export class ResetPasswordComponent implements OnInit {
   emailForm: FormGroup;
   error: string;
   successMessage: string;
+  spinner = false;
+  clicked = false;
 
   constructor(private authService: AuthServiceService) {}
 
@@ -26,11 +28,15 @@ export class ResetPasswordComponent implements OnInit {
       this.error = 'Missing form values';
       return
     }
+    this.clicked = true;
+    this.spinner = true;
     const email = this.emailForm.value.email;
     this.authService.forgotPassword(email).subscribe({
       next: res => {
         console.log(res);
         if (res) {
+          this.error = ''
+          this.spinner = false;
           this.successMessage = 'A reset password email has been sent to ' + email + ', please follow the email steps. (Link will expire in 1 hour)'
         }
       },
