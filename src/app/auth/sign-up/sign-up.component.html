@@ -81,7 +81,10 @@
                         </div>
                         <div class="row">
                             <div class="col submit-btn">
-                                <button type="submit" class="btn reg-btn" [disabled]="!signUpForm.valid">Submit</button>
+                                <button type="submit" class="btn reg-btn" [disabled]="clicked">
+                                    <app-loading-spinner *ngIf="spinner"></app-loading-spinner>
+                                    <div *ngIf="!spinner">Sign Up</div>
+                                </button>
                             </div>
                         </div>
                     </form>

@@ -12,6 +12,8 @@ export class LoginComponent implements OnInit {
   
   loginForm: FormGroup;
   error: string;
+  spinner = false;
+  clicked = false;
 
   constructor(
     private authService: AuthServiceService,
@@ -29,20 +31,24 @@ export class LoginComponent implements OnInit {
   loginUser() {
     if (this.loginForm.invalid) {
       this.error = 'Missing form values';
-      console.log(this.error);
       return
     }
+    this.spinner = true;
+    this.clicked = true;
     const email = this.loginForm.value.email;
     const password = this.loginForm.value.password;
     this.authService.loginUser(email, password).subscribe({
       next: res => {
         const token = res.token;
-        localStorage.setItem('auth-token', token )
+        localStorage.setItem('auth-token', token);
         console.log(res);
+        this.spinner = false;
         this.router.navigate(['posts'])
       },
       error: err => {
         this.error = err.error.message
+        this.clicked = false;
+        this.spinner = false;
       }
     })
   }

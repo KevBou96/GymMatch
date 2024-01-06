@@ -14,6 +14,8 @@ export class SignUpComponent implements OnInit {
   signUpForm: FormGroup;
   passwordPattern: RegExp = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-])/
   error: string;
+  spinner = false;
+  clicked = false;
 
   constructor(
     private authService: AuthServiceService,
@@ -37,6 +39,8 @@ export class SignUpComponent implements OnInit {
       this.error = 'Missing form fields';
       return
     }
+    this.spinner = true;
+    this.clicked = true;
     const firstName = this.signUpForm.value.firstName;
     const lastName = this.signUpForm.value.lastName;
     const email = this.signUpForm.value.email;
@@ -49,13 +53,15 @@ export class SignUpComponent implements OnInit {
     }
     this.authService.signUpUser(user).subscribe({
       next: res => {
+        this.spinner = false;
         this.router.navigate(['login']).then(() => {
           console.log('sent to login');
         }) 
       },
       error: err => {
         console.log(err);
-        
+        this.spinner = false;
+        this.clicked = false;
         this.error = err.error.message
       }
     })
