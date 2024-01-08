@@ -8,10 +8,10 @@ export const changePasswordGuardGuard = (activatedRoute: ActivatedRouteSnapshot)
   const router = inject(Router);
   const token = activatedRoute.params['token'];
   return authService.verifyChangePasswordToken(token).pipe(
-    tap(data => {
+    tap(() => {
     return true
     
   }), 
-  catchError(() =>  of(router.createUrlTree(['login'])))
+  catchError(() =>  of(router.createUrlTree(['homepage'])))
   )
 };

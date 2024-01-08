@@ -1,22 +1,30 @@
 <!-- Caroussel component -->
 <nav id="header" class="navbar navbar-expand-md">
-    <a class="navbar-brand logo"routerLink="/">GYM MATCH</a>
+    <a class="navbar-brand logo"routerLink="/main/posts">GYM MATCH</a>
         <button class="navbar-toggler" type="button" (click)="isCollapsed = !isCollapsed" [attr.aria-expanded]="!isCollapsed" aria-controls="collapseNavbar" data-toggle="collapse" data-target="#collapsibleNavbar">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse justify-content-end navbar-right-item" id="collapsibleNavbar" [ngbCollapse]="isCollapsed">
             <ul class="nav navbar-nav navbar-right">
-                <li class="nav-item" routerLinkActive="active">
-                    <a class="nav-item nav-item-tag" (click)="logout()">Log Out</a>
-                </li>
-                <li class="nav-item" routerLinkActive="active">
+                <li *ngIf="!user" class="nav-item" routerLinkActive="active">
                     <a routerLink="/login" class="nav-item nav-item-tag">Log In</a>
                 </li>
-                <li class="nav-item" routerLinkActive="active">
+                <li *ngIf="!user" class="nav-item" routerLinkActive="active">
                     <a routerLink="/sign-up" class="nav-item nav-item-tag">Sign Up</a>
                 </li>
             </ul>
+            <div *ngIf="user" ngbDropdown class="dropdown">
+                <a ngbDropdownToggle class="btn" type="button" id="dropdownMenuButton1" aria-expanded="false">
+                    <img src="../../../assets/icons/user.png" height="50" width="50">
+                </a>
+                <ul ngbDropdownMenu aria-labelledby="dropdownMenuButton1">
+                  <li><a ngbDropdownItem routerLink="/main/profile">Profile</a></li>
+                  <li><a ngbDropdownItem routerLink="/main/settings">Settings</a></li>
+                  <li><a ngbDropdownItem (click)="logout()">Log Out</a></li>
+                </ul>
+              </div>
         </div>
+        
 </nav>
 
 

@@ -32,7 +32,6 @@ export class CreatePostModalComponent implements OnInit {
     this.isLoading = true;
     let title = this.postForm.value.title;
     let content = this.postForm.value.content;
-    console.log(this.postForm);
     
     const newPost: IPost = {
       post_title: title,

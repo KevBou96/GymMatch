@@ -8,10 +8,10 @@ export const authGuard = () => {
   const router = inject(Router);
   const token = localStorage.getItem('auth-token');
   if (!token) {
-    return router.createUrlTree(['login'])
+    return router.createUrlTree(['homepage'])
   }
   return authService.verifyUserAuth(token).pipe(tap(() => {
     return true;
-  }), catchError(() =>  of(router.createUrlTree(['login'])))
+  }), catchError(() =>  of(router.createUrlTree(['homepage'])))
   )
 };

@@ -3,6 +3,8 @@ import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { IPost, IPostResponseData } from '../interfaces/post.interface';
 import { Subject, of, throwError } from 'rxjs';
 import { catchError, exhaustMap, map, take, tap } from "rxjs/operators";
+import { UsersService } from './users.service';
+import { IUser } from '../interfaces/user.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +14,7 @@ export class PostService {
   private posts: IPost[] = [];
   postChanged = new Subject<IPost[]>();
   private token = localStorage.getItem('auth-token');
-  constructor(private http: HttpClient) {};
+  constructor(private http: HttpClient, private userService: UsersService) {};
 
 
   getPosts() {
@@ -40,11 +42,16 @@ export class PostService {
   }
 
   createNewPost(post: IPost) {
-    this.addPost(post);
+    
     const formData = new FormData();
+    this.userService.user.subscribe((user: any) => {
+      formData.append("user_id", user.userId);
+    })
     formData.append("post_title", post.post_title);
     formData.append("post_content", post.post_content);
     formData.append("image", post.image);
+    
+
     return this.http.post<any>(
       'http://localhost:8080/feed/post', 
       formData,
@@ -59,6 +66,7 @@ export class PostService {
           if (res.status !== 201) {
             throw 'error'
           }
+          this.addPost(post);
           return res.body;
         }), catchError(err => {
           throw err

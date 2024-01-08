@@ -41,9 +41,8 @@ export class LoginComponent implements OnInit {
       next: res => {
         const token = res.token;
         localStorage.setItem('auth-token', token);
-        console.log(res);
         this.spinner = false;
-        this.router.navigate(['posts'])
+        this.router.navigate(['main/posts'])
       },
       error: err => {
         this.error = err.error.message

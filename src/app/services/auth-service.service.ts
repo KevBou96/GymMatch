@@ -1,16 +1,18 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { IPost, IPostResponseData } from '../interfaces/post.interface';
-import { IUser } from '../interfaces/user.interface';
+import { IUser, User } from '../interfaces/user.interface';
 import { Subject, of, throwError } from 'rxjs';
 import { catchError, exhaustMap, map, take, tap } from "rxjs/operators";
+import { UsersService } from './users.service';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthServiceService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private userService: UsersService, private router: Router) { }
 
   signUpUser(user: IUser) {
     return this.http.post(
@@ -120,11 +122,19 @@ export class AuthServiceService {
     }
     ).pipe(
       map((responseData: any) => {
-        return responseData.body;
+        return responseData.body.user;
       }), catchError(err => {
         throw err
+      }), tap((user: IUser) => {
+        this.userService.user.next(user)
       })
     )
+  }
+
+  logOut() {
+    this.userService.user.next(null);
+    localStorage.clear();
+    this.router.navigate(['/homepage'])
   }
 
 }

@@ -25,6 +25,9 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinner.component';
 import { ResetPasswordComponent } from './auth/reset-password/reset-password.component';
 import { ChangePasswordComponent } from './auth/change-password/change-password.component';
+import { ProfileComponent } from './user/profile/profile.component';
+import { SettingsComponent } from './user/settings/settings.component';
+import { MainComponent } from './user/main/main.component';
 
 
 @NgModule({
@@ -40,6 +43,9 @@ import { ChangePasswordComponent } from './auth/change-password/change-password.
     LoadingSpinnerComponent,
     ResetPasswordComponent,
     ChangePasswordComponent,
+    ProfileComponent,
+    SettingsComponent,
+    MainComponent,
   ],
   imports: [
     MatSlideToggleModule,
