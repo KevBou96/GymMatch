@@ -41,7 +41,8 @@
 }
 
 .dropdown-menu.show {
-    left: -45px;
+    left: -100px;
+    border-radius: 0px;
 }
 
 @media screen and (max-width: 767px) {

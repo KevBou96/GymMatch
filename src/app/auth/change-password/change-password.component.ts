@@ -44,11 +44,13 @@ export class ChangePasswordComponent implements OnInit {
     const password = this.resetPasswordForm.value.password;
     this.authService.postResetPassword(password, this.token).subscribe({
       next: res => {
+        this.error = '';
         this.spinner = false;
         this.successMessage = "Your password has been reset, please login with you new password!"
         console.log(res);
       },
       error: err => {
+        this.clicked = false;
         this.spinner = false;
         this.error = err.error.message;
         console.log(err);

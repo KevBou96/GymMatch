@@ -13,15 +13,6 @@ import { SignUpComponent } from './auth/sign-up/sign-up.component';
 import { NgbCarousel } from '@ng-bootstrap/ng-bootstrap';
 import { PostComponent } from './posts/post/post.component';
 import { CreatePostModalComponent } from './modal/create-post-modal/create-post-modal.component';
-
-import { ReactiveFormsModule } from '@angular/forms';
-
-// angular material imports 
-import { MatDialogModule} from '@angular/material/dialog';
-import { MatSlideToggleModule } from '@angular/material/slide-toggle';
-import { MatButtonModule } from '@angular/material/button';
-import {MatInputModule} from '@angular/material/input';
-import {MatFormFieldModule} from '@angular/material/form-field';
 import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinner.component';
 import { ResetPasswordComponent } from './auth/reset-password/reset-password.component';
 import { ChangePasswordComponent } from './auth/change-password/change-password.component';
@@ -29,6 +20,22 @@ import { ProfileComponent } from './user/profile/profile.component';
 import { SettingsComponent } from './user/settings/settings.component';
 import { MainComponent } from './user/main/main.component';
 
+import { ReactiveFormsModule } from '@angular/forms';
+
+// socket io
+import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
+
+// angular material imports 
+import { MatDialogModule} from '@angular/material/dialog';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatButtonModule } from '@angular/material/button';
+import {MatInputModule} from '@angular/material/input';
+import {MatFormFieldModule} from '@angular/material/form-field';
+
+
+
+
+const config: SocketIoConfig = { url: 'http://localhost:8080', options: {} };
 
 @NgModule({
   declarations: [
@@ -51,6 +58,7 @@ import { MainComponent } from './user/main/main.component';
     MatSlideToggleModule,
     BrowserModule,
     AppRoutingModule,
+    SocketIoModule.forRoot(config),
     BrowserAnimationsModule,
     MatButtonModule,
     NgbModule,

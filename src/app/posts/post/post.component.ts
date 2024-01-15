@@ -5,6 +5,7 @@ import { Subscription, catchError } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
 import { CreatePostModalComponent } from 'src/app/modal/create-post-modal/create-post-modal.component';
 import { LoginComponent } from 'src/app/auth/login/login.component';
+import { SocketService } from 'src/app/services/socket.service';
 
 @Component({
   selector: 'app-post',
@@ -20,7 +21,8 @@ export class PostComponent implements OnInit, OnDestroy {
 
   constructor(
     private postService: PostService,
-    private matDialog: MatDialog
+    private matDialog: MatDialog,
+    private socketService: SocketService,
     ) {}
   
 
@@ -29,6 +31,10 @@ export class PostComponent implements OnInit, OnDestroy {
     this.getPosts();
     this.postObs = this.postService.postChanged.subscribe((posts: IPost[]) => {
       this.posts = posts
+    })
+    this.socketService.getPost().subscribe((data: any) => {
+      console.log(data, 'post data');
+      
     })
   }
 

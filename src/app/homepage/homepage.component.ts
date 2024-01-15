@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbCarouselConfig } from '@ng-bootstrap/ng-bootstrap';
+import { SocketService } from '../services/socket.service';
+
 
 @Component({
   selector: 'app-homepage',
@@ -13,15 +15,19 @@ export class HomepageComponent implements OnInit  {
       "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Z3ltc3xlbnwwfHwwfHx8MA%3D%3D"
     ];
 
-    constructor(config: NgbCarouselConfig) {
+    constructor(config: NgbCarouselConfig, private socketService: SocketService) {
       
       config.wrap = true;
       config.keyboard = false;
       config.pauseOnHover = false;
       config.animation = false;
     }
+
   ngOnInit(): void {
-    
+    // this.socketService.getMessage().subscribe(msg => {
+    //   console.log(msg, 'socket server');
+      
+    // })
   }
 }
 

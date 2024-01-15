@@ -4,6 +4,7 @@ import { catchError } from 'rxjs';
 import { IPost } from 'src/app/interfaces/post.interface';
 import { PostService } from 'src/app/services/post-service.service';
 import { MatDialogRef } from '@angular/material/dialog';
+import { SocketService } from 'src/app/services/socket.service';
 
 @Component({
   selector: 'app-create-post-modal',

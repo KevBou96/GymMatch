@@ -5,6 +5,7 @@ import { Subject, of, throwError } from 'rxjs';
 import { catchError, exhaustMap, map, take, tap } from "rxjs/operators";
 import { UsersService } from './users.service';
 import { IUser } from '../interfaces/user.interface';
+import { SocketService } from './socket.service';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +15,7 @@ export class PostService {
   private posts: IPost[] = [];
   postChanged = new Subject<IPost[]>();
   private token = localStorage.getItem('auth-token');
-  constructor(private http: HttpClient, private userService: UsersService) {};
+  constructor(private http: HttpClient, private userService: UsersService, private socketService: SocketService) {};
 
 
   getPosts() {
@@ -42,7 +43,6 @@ export class PostService {
   }
 
   createNewPost(post: IPost) {
-    
     const formData = new FormData();
     this.userService.user.subscribe((user: any) => {
       formData.append("user_id", user.userId);
@@ -50,8 +50,6 @@ export class PostService {
     formData.append("post_title", post.post_title);
     formData.append("post_content", post.post_content);
     formData.append("image", post.image);
-    
-
     return this.http.post<any>(
       'http://localhost:8080/feed/post', 
       formData,
@@ -66,7 +64,6 @@ export class PostService {
           if (res.status !== 201) {
             throw 'error'
           }
-          this.addPost(post);
           return res.body;
         }), catchError(err => {
           throw err
@@ -106,8 +103,6 @@ export class PostService {
       },
       ).pipe(
         map((res: any) => {
-          console.log(res);
-          
           if (res.status !== 201) {
             throw 'error'
           }

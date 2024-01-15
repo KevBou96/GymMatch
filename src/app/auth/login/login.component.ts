@@ -41,11 +41,12 @@ export class LoginComponent implements OnInit {
       next: res => {
         const token = res.token;
         localStorage.setItem('auth-token', token);
+        this.error = '';
         this.spinner = false;
         this.router.navigate(['main/posts'])
       },
       error: err => {
-        this.error = err.error.message
+        this.error = err.error.message;
         this.clicked = false;
         this.spinner = false;
       }

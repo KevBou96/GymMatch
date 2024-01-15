@@ -24,7 +24,8 @@ const routes: Routes = [
     { path: 'settings', component: SettingsComponent}
   ]},
   { path: 'reset-password', component: ResetPasswordComponent},
-  { path: 'change-password/:token', component: ChangePasswordComponent, canActivate: [changePasswordGuardGuard]}  
+  { path: 'change-password/:token', component: ChangePasswordComponent, canActivate: [changePasswordGuardGuard]},
+  { path: '**', component: HomepageComponent}  
 ];
 
 @NgModule({
