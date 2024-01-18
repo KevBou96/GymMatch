@@ -41,8 +41,21 @@
 }
 
 .dropdown-menu.show {
-    left: -100px;
+    top: 70px;
+    left: -80px;
     border-radius: 0px;
+}
+
+.dropdown-toggle::after {
+    border: none;
+}
+
+#collapsibleNavbar {
+    text-align: center;
+}
+
+.search-bar-component {
+    margin: auto;
 }
 
 @media screen and (max-width: 767px) {

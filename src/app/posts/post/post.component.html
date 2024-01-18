@@ -1,8 +1,8 @@
 
 <div class="container">
     <div class="row">
-        <div class="col create-post" (click)="openCreatePostModal()">
-            <button class="btn reg-btn">New Post</button>
+        <div class="col create-post">
+            <button class="btn reg-btn" (click)="openCreatePostModal()">New Post</button>
         </div>
     </div>
     <div *ngIf="posts" class="row">
@@ -10,12 +10,12 @@
             <div *ngFor="let post of posts; let i = index" class="post-container">
                 <div class="row">
                     <div class="col">
-                        <div class="post-date">Post created by user on {{ post.created_data | date }}</div>
+                        <div class="post-date">Post created by {{ post.first_name }} {{ post.last_name}} on {{ post.created_data | date }}</div>
                         <div class="post-title"> {{ post.post_title }}</div>
                         <div class="options-row">
                                 <button class="btn option-btn" (click)="getPost(post.post_id!)">VIEW</button>
-                                <button class="btn option-btn edit-btn">EDIT</button>
-                                <button class="btn option-btn delete-btn" (click)="deletePost(post.post_id!, i)">DELETE</button>   
+                                <!-- <button class="btn option-btn edit-btn">EDIT</button>
+                                <button class="btn option-btn delete-btn" (click)="deletePost(post.post_id!, i)">DELETE</button>    -->
                         </div>
                        
                     </div>

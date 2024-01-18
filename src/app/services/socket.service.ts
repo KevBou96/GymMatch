@@ -10,7 +10,9 @@ export class SocketService {
   constructor( public socket: Socket) { }
 
   getPost () {
-    return this.socket.fromEvent<any>('posts');
+    return this.socket.fromEvent<any>('posts').pipe(map(data => {
+      return data.post
+    }));
   }
 
   getMessage() {

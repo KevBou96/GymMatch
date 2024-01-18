@@ -5,27 +5,37 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse justify-content-end navbar-right-item" id="collapsibleNavbar" [ngbCollapse]="isCollapsed">
+            <div *ngIf="isUser" class="search-bar-component">
+                <app-search-bar></app-search-bar>
+            </div>
             <ul class="nav navbar-nav navbar-right">
-                <li *ngIf="!user" class="nav-item" routerLinkActive="active">
+                <li *ngIf="!isUser" class="nav-item" routerLinkActive="active">
                     <a routerLink="/login" class="nav-item nav-item-tag">Log In</a>
                 </li>
-                <li *ngIf="!user" class="nav-item" routerLinkActive="active">
+                <li *ngIf="!isUser" class="nav-item" routerLinkActive="active">
                     <a routerLink="/sign-up" class="nav-item nav-item-tag">Sign Up</a>
                 </li>
+                <div *ngIf="isUser" ngbDropdown class="dropdown">
+                    <a ngbDropdownToggle id="dropdownMenuButton2" aria-expanded="false" class="btn" type="button"><img src="../../../assets/icons/bell.png" height="40" width="40"></a>
+                    <ul ngbDropdownMenu aria-labelledby="dropdownMenuButton2" class="nav-item">
+                        <li ngbDropdownItem>hello</li>
+                    </ul>
+                </div>
+                <div *ngIf="isUser" ngbDropdown class="dropdown">
+                    <a ngbDropdownToggle class="btn" type="button" id="dropdownMenuButton1" aria-expanded="false">
+                        <img src="../../../assets/icons/user.png" height="40" width="40">
+                    </a>
+                    <ul ngbDropdownMenu aria-labelledby="dropdownMenuButton1">
+                        <li class="dp-user-data"><a ngbDropdownItem routerLink="/main/profile">
+                            {{ user?.firstName }} {{ user?.lastName }} Profile
+                        </a>   
+                    </li>
+                        <li><a ngbDropdownItem routerLink="/main/settings">Settings</a></li>
+                        <li><a ngbDropdownItem (click)="logout()">Log Out</a></li>
+                    </ul>
+                </div>
             </ul>
-            <div *ngIf="user" ngbDropdown class="dropdown">
-                <a ngbDropdownToggle class="btn" type="button" id="dropdownMenuButton1" aria-expanded="false">
-                    <img src="../../../assets/icons/user.png" height="50" width="50">
-                </a>
-                <ul ngbDropdownMenu aria-labelledby="dropdownMenuButton1">
-                    <li class="dp-user-data"><a ngbDropdownItem routerLink="/main/profile">
-                        {{ user.firstName }} {{ user.lastName }} Profile
-                    </a>   
-                </li>
-                    <li><a ngbDropdownItem routerLink="/main/settings">Settings</a></li>
-                    <li><a ngbDropdownItem (click)="logout()">Log Out</a></li>
-                </ul>
-              </div>
+            
         </div>
         
 </nav>

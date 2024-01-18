@@ -30,11 +30,10 @@ export class PostComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.getPosts();
     this.postObs = this.postService.postChanged.subscribe((posts: IPost[]) => {
-      this.posts = posts
+      this.posts = posts;
     })
-    this.socketService.getPost().subscribe((data: any) => {
-      console.log(data, 'post data');
-      
+    this.socketService.getPost().subscribe((post: IPost) => {
+      this.posts.unshift(post)
     })
   }
 

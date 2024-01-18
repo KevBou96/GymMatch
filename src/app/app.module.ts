@@ -4,6 +4,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomepageComponent } from './homepage/homepage.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FormsModule } from '@angular/forms';
 
 import { HeaderComponent } from './header/header/header.component';
 import { FooterComponent } from './footer/footer/footer.component';
@@ -31,6 +32,7 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatButtonModule } from '@angular/material/button';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
+import { SearchBarComponent } from './header/search-bar/search-bar.component';
 
 
 
@@ -53,6 +55,7 @@ const config: SocketIoConfig = { url: 'http://localhost:8080', options: {} };
     ProfileComponent,
     SettingsComponent,
     MainComponent,
+    SearchBarComponent,
   ],
   imports: [
     MatSlideToggleModule,
@@ -62,6 +65,7 @@ const config: SocketIoConfig = { url: 'http://localhost:8080', options: {} };
     BrowserAnimationsModule,
     MatButtonModule,
     NgbModule,
+    FormsModule,
     NgbCarousel,
     MatDialogModule,
     ReactiveFormsModule,

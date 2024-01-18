@@ -33,7 +33,7 @@ export class PostService {
             throw 'error'
           }
           return responseData.body.posts;
-        }), tap((posts: IPost[]) => {
+        }), tap((posts: IPost[]) => {    
           this.posts = posts;
         })
         , catchError(err => {
@@ -50,6 +50,8 @@ export class PostService {
     formData.append("post_title", post.post_title);
     formData.append("post_content", post.post_content);
     formData.append("image", post.image);
+    formData.append("first_name", post.first_name);
+    formData.append("last_name", post.last_name);
     return this.http.post<any>(
       'http://localhost:8080/feed/post', 
       formData,

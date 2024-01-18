@@ -11,19 +11,24 @@ import { UsersService } from 'src/app/services/users.service';
 export class HeaderComponent implements OnInit {
 
   isCollapsed = true;
+  isUser = false;
   user: IUser | null;
 
   constructor( private userService: UsersService, private authService: AuthServiceService) {}
 
   ngOnInit(): void {
     this.userService.user.subscribe((user: IUser | null) => {
-      this.user = user;
+      if (user) {
+        this.isUser = true;
+        this.user = user;
+      }
     })
   }
  
 
 
   logout() {
+    this.isUser = false;
     this.authService.logOut();
   }
 }

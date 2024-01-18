@@ -5,6 +5,8 @@ import { IPost } from 'src/app/interfaces/post.interface';
 import { PostService } from 'src/app/services/post-service.service';
 import { MatDialogRef } from '@angular/material/dialog';
 import { SocketService } from 'src/app/services/socket.service';
+import { UsersService } from 'src/app/services/users.service';
+import { IUser } from 'src/app/interfaces/user.interface';
 
 @Component({
   selector: 'app-create-post-modal',
@@ -18,14 +20,20 @@ export class CreatePostModalComponent implements OnInit {
   isLoading = false;
   file: File;
   isImage = false;
+  user: IUser;
 
-  constructor(private postService: PostService, public dialogRef: MatDialogRef<CreatePostModalComponent>) {}
+  constructor(private postService: PostService, private userService: UsersService, public dialogRef: MatDialogRef<CreatePostModalComponent>) {}
 
   ngOnInit(): void {
     this.postForm = new FormGroup({
       'title': new FormControl(null, [Validators.required]),
       'content': new FormControl(null, [Validators.required]),
       'image': new FormControl(null)
+    })
+    this.userService.user.subscribe(user => {
+      if (user) {
+        this.user = user;
+      }
     })
   }
 
@@ -38,7 +46,9 @@ export class CreatePostModalComponent implements OnInit {
       post_title: title,
       post_content: content,
       image: this.file,
-      created_data: new Date()
+      created_data: new Date(),
+      first_name: this.user.firstName,
+      last_name: this.user.lastName
     }
     this.postService.createNewPost(newPost).subscribe({
       next: res => {
