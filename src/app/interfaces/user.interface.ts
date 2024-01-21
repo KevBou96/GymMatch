@@ -10,6 +10,12 @@ export interface IUser {
     created_on?: Date
 }
 
+export interface IFriend {
+    userId?: number,
+    firstName: string,
+    lastName: string
+}
+
 export class User {
     constructor(
         public firstName: string,
