@@ -20,7 +20,7 @@ const routes: Routes = [
   { path: 'sign-up', component: SignUpComponent},
   { path: 'main',  component: MainComponent, canActivate: [authGuard] , children: [
     { path: 'posts', component: PostComponent},
-    { path: 'profile', component: ProfileComponent },
+    { path: 'user/:userId', component: ProfileComponent },
     { path: 'settings', component: SettingsComponent}
   ]},
   { path: 'reset-password', component: ResetPasswordComponent},
@@ -30,7 +30,9 @@ const routes: Routes = [
 
 @NgModule({
   imports: [
-    RouterModule.forRoot(routes),
+    RouterModule.forRoot(routes, {
+      onSameUrlNavigation: 'reload'
+    }),
     HttpClientModule
   ],
   exports: [RouterModule]

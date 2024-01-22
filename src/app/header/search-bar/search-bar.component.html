@@ -12,8 +12,8 @@
             placeholder="Search users by name or last name">
             <ul class="search-list" ngbDropdownMenu aria-labelledby="dropdownMenuButton1">
                 <li *ngFor="let user of users">
-                    <a href="">
-                        <div class="row" (click)="addFriend(user.userId)">
+                    <a (click)="goToUserProfile(user.userId)">
+                        <div class="row">
                             <div class="col search-element">
                                 <div class="search-result">
                                     {{ user.firstName }} {{ user.lastName }}

@@ -26,10 +26,11 @@
                         <img src="../../../assets/icons/user.png" height="40" width="40">
                     </a>
                     <ul ngbDropdownMenu aria-labelledby="dropdownMenuButton1">
-                        <li class="dp-user-data"><a ngbDropdownItem routerLink="/main/profile">
-                            {{ user?.firstName }} {{ user?.lastName }} Profile
-                        </a>   
-                    </li>
+                        <li class="dp-user-data">
+                            <a ngbDropdownItem [routerLink]="['/main/user', user?.userId]">
+                                {{ user?.firstName }} {{ user?.lastName }} Profile
+                            </a>   
+                        </li>
                         <li><a ngbDropdownItem routerLink="/main/settings">Settings</a></li>
                         <li><a ngbDropdownItem (click)="logout()">Log Out</a></li>
                     </ul>

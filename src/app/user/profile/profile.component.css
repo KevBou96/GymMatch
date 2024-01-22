@@ -1,0 +1,16 @@
+.profile-section {
+    margin: 40px 50px;
+}
+
+.reg-btn {
+    color: white;
+    border: 2px solid white;
+    font-weight: 500;
+    font-size: 20px;
+    margin: 10px;
+    padding: 10px 15px;
+    border-radius: 15px;
+    background-color: #05445E;
+    display: flex;
+    justify-content: center;
+}

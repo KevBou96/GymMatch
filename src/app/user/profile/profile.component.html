@@ -1,1 +1,44 @@
-<p>profile works!</p>
+<div class="container">
+    <div class="profile-section">
+        <div class="row">
+            <div class="col-md-5">
+                <img class="icon-img" 
+                src="../../assets/icons/user.png" 
+                alt="icon-1" 
+                width="350" 
+                height="450">
+            </div>
+            <div *ngIf="profileUser" class="col-md-7">
+                <div class="row">
+                    <div class="col">
+                        {{ profileUser.firstName }}  {{ profileUser.lastName}}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        {{ profileUser.email }}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                       Has been a user since: {{ profileUser.created_on | date }}
+                    </div>
+                </div>
+                <div class="add-user">
+                    <button class="btn reg-btn" (click)="addFriend()">
+                        Add to friends
+                    </button>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+    <div class="posts-section">
+        <div class="row">
+            <div class="col">
+                posts
+            </div>
+        </div>
+    </div>
+</div>
+

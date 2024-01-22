@@ -4,7 +4,7 @@ export interface IUser {
     lastName: string,
     gender?: string,
     email: string,
-    password: string,
+    password?: string,
     profileImg?: File,
     verified?: boolean,
     created_on?: Date

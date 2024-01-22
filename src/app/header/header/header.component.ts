@@ -20,13 +20,11 @@ export class HeaderComponent implements OnInit {
     this.userService.user.subscribe((user: IUser | null) => {
       if (user) {
         this.isUser = true;
-        this.user = user;
+        this.user = user;      
       }
     })
   }
  
-
-
   logout() {
     this.isUser = false;
     this.authService.logOut();

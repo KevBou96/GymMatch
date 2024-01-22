@@ -29,9 +29,56 @@ export class UsersService {
           return { userId: item.user_id, firstName: item.first_name, lastName: item.last_name }
         });
       }),
-      catchError( err => {
+      catchError(err => {
         throw err
       })
     )
+  }
+
+  getUserInfo(userId: number) {
+    return this.http.get<any>('http://localhost:8080/user/get-user/' + userId, 
+    {
+      headers: new HttpHeaders({
+        'Authorization' : 'Bearer ' + this.token
+      }),
+      observe: 'response'
+    }).pipe(
+      map((responseData: any) => {
+        const userObj = {
+          userId: responseData.body.user.user_id,
+          email: responseData.body.user.email,
+          firstName: responseData.body.user.first_name,
+          lastName: responseData.body.user.last_name,
+          created_on: responseData.body.user.created_on
+        }
+        return userObj
+      }),
+      catchError(err => {
+        throw err
+      })
+    )
+  }
+
+  addNewFriend(userId: number | undefined, friendId: number | undefined) {
+    const body = {
+      userId,
+      friendId
+    }
+    return this.http.post<any>('http://localhost:8080/user/add-friend',
+      body,
+      {
+        headers: new HttpHeaders({
+          'Authorization' : 'Bearer ' + this.token
+        }),
+        observe: 'response'
+      }).pipe(
+        map((responseData: any) => {
+          console.log(responseData);
+          return responseData.body
+        }),
+        catchError(err => {
+          throw err
+        })
+      )
   }
 }
