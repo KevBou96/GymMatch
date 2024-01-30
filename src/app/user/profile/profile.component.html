@@ -24,9 +24,12 @@
                        Has been a user since: {{ profileUser.created_on | date }}
                     </div>
                 </div>
-                <div class="add-user">
-                    <button class="btn reg-btn" (click)="addFriend()">
+                <div *ngIf="(user?.userId != profileUser.userId)" class="add-user">
+                    <button *ngIf="!areFriends" class="btn reg-btn" (click)="addFriend()">
                         Add to friends
+                    </button>
+                    <button *ngIf="areFriends" class="btn reg-btn" (click)="removeFromFriends()">
+                        Remove from friends
                     </button>
                 </div>
             </div>

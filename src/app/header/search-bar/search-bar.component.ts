@@ -35,6 +35,8 @@ export class SearchBarComponent {
   searchFriends() {
     this.userService.getSearchFriends(this.searchText).subscribe({
       next: (users: IFriend[]) => {
+        console.log(users);
+        
         this.users = users;
       },
       error: err => {

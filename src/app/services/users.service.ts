@@ -59,11 +59,35 @@ export class UsersService {
     )
   }
 
+  areFriends(userId: number | undefined, friendId: number | undefined) {
+    const body = {
+      userId,
+      friendId
+    }
+    return this.http.post<any>('http://localhost:8080/user/check-if-friends', 
+      body,
+      {
+        headers: new HttpHeaders({
+          'Authorization' : 'Bearer ' + this.token
+        }),
+        observe: 'response'
+      }).pipe(
+        map((responseData: any) => {
+          return responseData.body.message
+        }),
+        catchError(err => {
+          throw err
+        })
+      )
+  }
+
   addNewFriend(userId: number | undefined, friendId: number | undefined) {
     const body = {
       userId,
       friendId
     }
+    console.log(body);
+    
     return this.http.post<any>('http://localhost:8080/user/add-friend',
       body,
       {
