@@ -1,5 +1,9 @@
 .profile-section {
-    margin: 40px 50px;
+    margin: 40px 70px;
+}
+
+.posts-section {
+    margin: 0 70px
 }
 
 .reg-btn {
@@ -7,10 +11,64 @@
     border: 2px solid white;
     font-weight: 500;
     font-size: 20px;
-    margin: 10px;
+    margin: 10px 0;
     padding: 10px 15px;
     border-radius: 15px;
     background-color: #05445E;
     display: flex;
     justify-content: center;
+}
+
+.create-post {
+    display: flex;
+    justify-content: center;
+    margin: 50px;
+}
+
+.post-container {
+    border: 6px solid #05445E;
+    padding: 20px;
+    margin: 70px 0;
+}
+
+.post-date {
+    font-size: 20px;
+    font-weight: 500;
+    color: #05445E;
+}
+
+.post-title {
+    font-size: 40px;
+    font-weight: 600;
+    color: #05445E;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.options-row {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.option-btn {
+    font-size: 25px;
+    font-weight: 500;
+    color: #05445E;
+    margin: 0 15px;
+}
+
+.option-btn:hover, .option-btn:focus {
+    background: #189AB4;
+}
+
+.option-btn:active {
+    background: #189AB4;
+}
+
+.edit-btn {
+    color: green;
+}
+
+.delete-btn {
+    color: red;
 }

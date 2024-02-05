@@ -37,10 +37,31 @@
         </div>
     </div>
     <div class="posts-section">
-        <div class="row">
+        <div *ngIf="!areFriends" class="row">
             <div class="col">
-                posts
+                <h2>Need to be friends with {{ profileUser?.firstName }} to see her posts</h2>
             </div>
+        </div>
+        <div *ngIf="areFriends" class="row">
+                <div class="col posts-container">
+                    <h2 *ngIf="posts.length > 0">Posts</h2>
+                    <div *ngFor="let post of posts; let i = index" class="post-container">
+                        <div class="row">
+                            <div class="col">
+                                <div class="post-date">Post created by {{ post.first_name }} {{ post.last_name}} on {{ post.created_data | date }}</div>
+                                <div class="post-title"> {{ post.post_title }}</div>
+                                <div class="options-row">
+                                        <!-- <button class="btn option-btn" (click)="getPost(post.post_id!)">VIEW</button> -->
+                                        <!-- <button class="btn option-btn edit-btn">EDIT</button>
+                                        <button class="btn option-btn delete-btn" (click)="deletePost(post.post_id!, i)">DELETE</button>    -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div *ngIf="posts.length == 0">
+                        <h2>User has no posts yet</h2>
+                    </div>
+                </div> 
         </div>
     </div>
 </div>

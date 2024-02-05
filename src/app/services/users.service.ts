@@ -16,7 +16,7 @@ export class UsersService {
 
 
   getSearchFriends(searchText: string) {
-    return this.http.get<any>('http://localhost:8080/user/search-friends/' + searchText,
+    return this.http.get<any>('http://localhost:8080/user/search-users/' + searchText,
     {
       headers: new HttpHeaders({
         'Authorization' : 'Bearer ' + this.token
@@ -36,7 +36,7 @@ export class UsersService {
   }
 
   getUserInfo(userId: number) {
-    return this.http.get<any>('http://localhost:8080/user/get-user/' + userId, 
+    return this.http.get<any>('http://localhost:8080/user/user/' + userId, 
     {
       headers: new HttpHeaders({
         'Authorization' : 'Bearer ' + this.token
@@ -60,11 +60,8 @@ export class UsersService {
   }
 
   areFriends(userId: number | undefined, friendId: number | undefined) {
-    const body = {
-      userId,
-      friendId
-    }
-    return this.http.post<any>('http://localhost:8080/user/check-if-friends', 
+    const body = {}
+    return this.http.post<any>('http://localhost:8080/user/check-if-friends/' + friendId, 
       body,
       {
         headers: new HttpHeaders({
@@ -82,13 +79,10 @@ export class UsersService {
   }
 
   addNewFriend(userId: number | undefined, friendId: number | undefined) {
-    const body = {
-      userId,
-      friendId
-    }
+    const body = {}
     console.log(body);
     
-    return this.http.post<any>('http://localhost:8080/user/add-friend',
+    return this.http.post<any>('http://localhost:8080/user/friend/' + friendId,
       body,
       {
         headers: new HttpHeaders({
@@ -104,5 +98,24 @@ export class UsersService {
           throw err
         })
       )
+  }
+
+  deleteFromFriends(friendId: number | undefined) {
+    return this.http.delete<any>('http://localhost:8080/user/friend/' + friendId,
+    {
+      headers: new HttpHeaders({
+        'Authorization' : 'Bearer ' + this.token
+      }),
+      observe: 'response'
+    }).pipe(
+      map((responseData: any) => {
+        console.log(responseData);
+        
+        return responseData.body
+      }),
+      catchError(err => {
+        throw err
+      })
+    )
   }
 }

@@ -42,6 +42,22 @@ export class PostService {
     );
   }
 
+  getUserPosts(userId: number | undefined) {
+    return this.http.get<any>('http://localhost:8080/feed/posts/' + userId, {
+      headers: new HttpHeaders({
+        'Authorization' : 'Bearer ' + this.token
+      }),
+      observe: 'response'
+    }).pipe(
+      map((responseData: any) => {
+        return responseData.body
+      }),
+      catchError(err => {
+        throw err
+      })
+    )
+  }
+
   createNewPost(post: IPost) {
     const formData = new FormData();
     this.userService.user.subscribe((user: any) => {
