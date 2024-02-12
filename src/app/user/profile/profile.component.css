@@ -1,8 +1,9 @@
 .profile-section {
-    margin: 40px 70px;
+    margin: 20px 70px;
 }
 
 .posts-section {
+    padding-top: 20px;
     margin: 0 70px
 }
 
@@ -71,4 +72,24 @@
 
 .delete-btn {
     color: red;
+}
+
+.icon-img {
+    width: 100%;
+    height: auto;
+}
+
+.user-details {
+    margin: 0 auto;
+    max-width: 500px;
+    line-height: 40px;
+    padding: 20px;
+}
+
+.details {
+    font-size: 22px;
+}
+
+.profile-picture {
+    padding: 40px;
 }

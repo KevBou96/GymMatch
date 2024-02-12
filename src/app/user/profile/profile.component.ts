@@ -1,7 +1,9 @@
 import { Component, OnInit, inject } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, ActivatedRouteSnapshot, RouteConfigLoadEnd } from '@angular/router';
 import { IPost } from 'src/app/interfaces/post.interface';
 import { IUser } from 'src/app/interfaces/user.interface';
+import { EditProfileComponent } from 'src/app/modal/edit-profile/edit-profile.component';
 import { PostService } from 'src/app/services/post-service.service';
 import { UsersService } from 'src/app/services/users.service';
 
@@ -14,7 +16,8 @@ export class ProfileComponent implements OnInit {
   // injectables
   route = inject(ActivatedRoute);
   userService = inject(UsersService);
-  postService = inject(PostService)
+  postService = inject(PostService);
+  matDialog = inject(MatDialog);
 
   // variables
   profileUser: IUser | null;
@@ -68,6 +71,7 @@ export class ProfileComponent implements OnInit {
           if (this.profileUser.userId != this.user?.userId) {
             this.getAreFriends();
           } else {
+            this.areFriends = true;
             this.getPosts();
           }
         },
@@ -81,6 +85,8 @@ export class ProfileComponent implements OnInit {
   getAreFriends() {
     this.userService.areFriends(this.user?.userId, this.profileUser?.userId).subscribe({
       next: message => {
+        console.log(message);
+        
         if (message === 'FRIENDS') {
           this.areFriends = true;
           this.getPosts()
@@ -109,5 +115,15 @@ export class ProfileComponent implements OnInit {
       
     }
   })
+  }
+
+  editProfile() {
+    let dialogRef = this.matDialog.open(EditProfileComponent, {
+      panelClass:'bg-color',
+    })
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(result);
+      
+    })
   }
 }

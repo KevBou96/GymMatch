@@ -35,6 +35,7 @@ import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { SearchBarComponent } from './header/search-bar/search-bar.component';
 import { FilterPipe } from './pipes/filter.pipe';
+import { EditProfileComponent } from './modal/edit-profile/edit-profile.component';
 
 
 
@@ -59,6 +60,7 @@ const config: SocketIoConfig = { url: 'http://localhost:8080', options: {} };
     MainComponent,
     SearchBarComponent,
     FilterPipe,
+    EditProfileComponent,
   ],
   imports: [
     MatSlideToggleModule,

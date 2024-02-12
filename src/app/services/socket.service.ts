@@ -15,6 +15,12 @@ export class SocketService {
     }));
   }
 
+  getNotification() {
+    return this.socket.fromEvent<any>('notification').pipe(map(data => {
+      return data.result
+    }))
+  }
+
   getMessage() {
     return this.socket.fromEvent<any>('msg')
   };

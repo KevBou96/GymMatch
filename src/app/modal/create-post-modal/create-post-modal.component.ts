@@ -64,13 +64,14 @@ export class CreatePostModalComponent implements OnInit {
 
   onChange(event: any) {
     console.log(event.target.files[0]);
-    if (event.target.files[0].type === 'image/png' ||
+    if (
+        event.target.files[0].type === 'image/png' ||
         event.target.files[0].type === 'image/jpg' || 
         event.target.files[0].type === 'image/jpeg'
         ) {
-          this.file = event.target.files[0];
-          this.isImage = true;
-          this.error = ""
+            this.file = event.target.files[0];
+            this.isImage = true;
+            this.error = "";
           }
     else {
       this.error = 'File must be an image';

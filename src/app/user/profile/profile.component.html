@@ -2,35 +2,36 @@
     <div class="profile-section">
         <div class="row">
             <div class="col-md-5">
-                <img class="icon-img" 
-                src="../../assets/icons/user.png" 
-                alt="icon-1" 
-                width="350" 
-                height="450">
+                <div class="profile-picture">
+                    <img class="icon-img" 
+                    src="../../assets/icons/user.png" 
+                    alt="icon-1" >
+                </div>
             </div>
             <div *ngIf="profileUser" class="col-md-7">
-                <div class="row">
-                    <div class="col">
-                        {{ profileUser.firstName }}  {{ profileUser.lastName}}
+                <div class="user-details">
+                        <div class="details">
+                            {{ profileUser.firstName }}  {{ profileUser.lastName}}
+                        </div>
+                        <div class="details">
+                            {{ profileUser.email }}
+                        </div>
+                        <div class="details">
+                           Has been a user since: {{ profileUser.created_on | date }}
+                        </div>
+                    <div *ngIf="(user?.userId != profileUser.userId)" class="add-user">
+                        <button *ngIf="!areFriends" class="btn reg-btn" (click)="addFriend()">
+                            Add to friends
+                        </button>
+                        <button *ngIf="areFriends" class="btn reg-btn" (click)="removeFromFriends()">
+                            Remove from friends
+                        </button>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="col">
-                        {{ profileUser.email }}
+                    <div class="edit-profile">
+                        <button *ngIf="user?.userId == profileUser.userId" class="btn reg-btn" (click)="editProfile()">
+                            EDIT PROFILE
+                        </button>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="col">
-                       Has been a user since: {{ profileUser.created_on | date }}
-                    </div>
-                </div>
-                <div *ngIf="(user?.userId != profileUser.userId)" class="add-user">
-                    <button *ngIf="!areFriends" class="btn reg-btn" (click)="addFriend()">
-                        Add to friends
-                    </button>
-                    <button *ngIf="areFriends" class="btn reg-btn" (click)="removeFromFriends()">
-                        Remove from friends
-                    </button>
                 </div>
             </div>
             

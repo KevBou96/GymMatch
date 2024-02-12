@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit, inject } from '@angular/core';
 import { IUser } from 'src/app/interfaces/user.interface';
 import { AuthServiceService } from 'src/app/services/auth-service.service';
+import { SocketService } from 'src/app/services/socket.service';
 import { UsersService } from 'src/app/services/users.service';
 
 @Component({
@@ -9,7 +10,7 @@ import { UsersService } from 'src/app/services/users.service';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-
+  socketService = inject(SocketService)
   isCollapsed = true;
   isUser = false;
   user: IUser | null;
@@ -23,6 +24,11 @@ export class HeaderComponent implements OnInit {
         this.user = user;      
       }
     })
+    this.socketService.getNotification().subscribe((data: any) => {
+      console.log(data);
+      
+    })
+    
   }
  
   logout() {
