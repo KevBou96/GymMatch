@@ -1,10 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { catchError } from 'rxjs';
 import { IPost } from 'src/app/interfaces/post.interface';
-import { PostService } from 'src/app/services/post-service.service';
 import { MatDialogRef } from '@angular/material/dialog';
-import { SocketService } from 'src/app/services/socket.service';
+import { PostService } from 'src/app/services/post-service.service';
 import { UsersService } from 'src/app/services/users.service';
 import { IUser } from 'src/app/interfaces/user.interface';
 
