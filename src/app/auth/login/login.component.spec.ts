@@ -47,18 +47,6 @@ describe('LoginComponent', () => {
         expect(authService).toBeTruthy()
     })
 
-    // it('Should return an error', async () => {
-    //     const email = 'kevenebou96@gmail.co';
-    //     const password = 'Kevene96*';
-    //     await service.loginUser(email, password).subscribe(
-    //         res => expect(res).toEqual()
-    //     )
-        
-    //     const req = httpTestingController.expectOne(service.)
-        
-        
-    // })
-
     it('Should log out user', () => {
         authService.logOut();
         let result = userService.user.value;
