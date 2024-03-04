@@ -36,6 +36,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import { SearchBarComponent } from './header/search-bar/search-bar.component';
 import { FilterPipe } from './pipes/filter.pipe';
 import { EditProfileComponent } from './modal/edit-profile/edit-profile.component';
+import { SocketService } from './services/socket.service';
 
 
 
@@ -78,7 +79,11 @@ const config: SocketIoConfig = { url: 'http://localhost:8080', options: {} };
     MatInputModule,
     MatFormFieldModule
   ],
-  providers: [],
+  exports: [
+    HeaderComponent,
+    FooterComponent
+  ],
+  providers: [SocketService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

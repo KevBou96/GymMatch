@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { IPost } from 'src/app/interfaces/post.interface';
 import { MatDialogRef } from '@angular/material/dialog';
-import { PostService } from 'src/app/services/post-service.service';
-import { UsersService } from 'src/app/services/users.service';
-import { IUser } from 'src/app/interfaces/user.interface';
+import { PostService } from '../../services/post-service.service';
+import { UsersService } from '../../services/users.service';
+import { IUser } from '../../interfaces/user.interface';
 
 @Component({
   selector: 'app-create-post-modal',
