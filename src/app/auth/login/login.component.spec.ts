@@ -29,7 +29,9 @@ describe('LoginComponent', () => {
         authService = TestBed.inject(AuthServiceService);
         userService = TestBed.inject(UsersService);
         httpClient = TestBed.inject(HttpClient);
-        httpTestingController = TestBed.inject(HttpTestingController)
+        httpTestingController = TestBed.inject(HttpTestingController);
+        fixture = TestBed.createComponent(LoginComponent);
+        fixture.detectChanges();
         
     });
 
@@ -38,7 +40,7 @@ describe('LoginComponent', () => {
     })
 
     it('Should create login component', () => {
-        fixture = TestBed.createComponent(LoginComponent);
+        
         component = fixture.componentInstance;
         expect(component).toBeTruthy();
     })

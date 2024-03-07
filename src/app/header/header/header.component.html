@@ -10,10 +10,10 @@
             </div>
             <ul class="nav navbar-nav navbar-right">
                 <li *ngIf="!isUser" class="nav-item" routerLinkActive="active">
-                    <a routerLink="/login" class="nav-item nav-item-tag">Log In</a>
+                    <a routerLink="/login" class="nav-item nav-item-tag" (click)="isCollapsed = !isCollapsed">Log In</a>
                 </li>
                 <li *ngIf="!isUser" class="nav-item" routerLinkActive="active">
-                    <a routerLink="/sign-up" class="nav-item nav-item-tag">Sign Up</a>
+                    <a routerLink="/sign-up" class="nav-item nav-item-tag" (click)="isCollapsed = !isCollapsed">Sign Up</a>
                 </li>
                 <div *ngIf="isUser" ngbDropdown class="dropdown">
                     <a ngbDropdownToggle id="dropdownMenuButton2" aria-expanded="false" class="btn" type="button"><img src="../../../assets/icons/bell.png" height="40" width="40"></a>
