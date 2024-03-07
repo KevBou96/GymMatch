@@ -53,13 +53,20 @@
     padding: 35px;
   }
 
-  .text-box {
+  .text-container {
     height: 50%;
+    position: relative;
+  }
+
+  .text-box {
     font-size: 20px;
     font-weight: 500;
     color: #189AB4;
-    text-align: center;
-    padding: 50px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -100%);
+ 
   }
 
   .icon-img {
@@ -72,6 +79,28 @@
     .card-box {
       width: 250px;
       height: 320px;
-      margin-bottom: 30px;
+      margin-bottom: 50px;
+    }
+  }
+
+  @media screen and (max-width: 450px) {
+    .card-box {
+      width: 230px;
+      height: 300px;
+      margin-bottom: 60px;
+    }
+
+    .main-line {
+      font-size: 2rem;
+      font-weight: 400;
+    }
+
+    .main-description {
+      font-size: 0.85rem;
+    }
+
+    .text-box {
+      font-size: 17px;
+      font-weight: 400;
     }
   }
