@@ -1,0 +1,14 @@
+.sample-container {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+}
+
+#circle {
+    position: absolute;
+}
+
+.new-circle {
+    position: absolute;
+    display: inline-block;
+}
