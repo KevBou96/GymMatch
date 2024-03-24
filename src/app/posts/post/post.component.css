@@ -20,15 +20,28 @@
 }
 
 .post-container {
-    border: 6px solid #05445E;
+    border: 3px solid #05445E;
+    border-radius: 5px;
     padding: 20px;
     margin: 70px 90px;
 }
 
 .post-date {
-    font-size: 20px;
+    font-size: 15px;
     font-weight: 500;
     color: #05445E;
+    float: right;
+}
+
+.post-name {
+    padding-left: 20px;
+    font-size: 18px;
+    font-weight: 400;
+    display: inline-block;
+}
+
+.post-profile-img {
+    display: inline-block;
 }
 
 .post-title {
@@ -37,6 +50,12 @@
     color: #05445E;
     margin-top: 15px;
     margin-bottom: 15px;
+}
+
+.post-img {
+    height: 100%;
+    width: 100%;
+    padding: 15px;
 }
 
 .options-row {

@@ -1,0 +1,3 @@
+<div class="sample-container" (click)="placeCircle($event)">
+    <div class="new-circle" *ngFor="let circle of circles" [ngStyle]="{left: 'circle.clientX', top: 'circle.clientY'}">O</div>
+</div>

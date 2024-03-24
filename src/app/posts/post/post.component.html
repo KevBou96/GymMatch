@@ -9,23 +9,40 @@
         <div class="col posts-container">
             <div *ngFor="let post of posts; let i = index" class="post-container">
                 <div class="row">
-                    <div class="col">
-                        <div class="post-date">Post created by {{ post.first_name }} {{ post.last_name}} on {{ post.created_data | date }}</div>
-                        <div class="post-title"> {{ post.post_title }}</div>
-                        <div class="options-row">
-                                <button class="btn option-btn" (click)="getPost(post.post_id!)">VIEW</button>
-                                <!-- <button class="btn option-btn edit-btn">EDIT</button>
-                                <button class="btn option-btn delete-btn" (click)="deletePost(post.post_id!, i)">DELETE</button>    -->
+                    <div class="col-md-8">
+                        <div class="post-profile-img">
+                            <img src="../../../assets/icons/user.png" alt="" height="30" width="30">
                         </div>
-                       
+                        <div class="post-name"> {{ post.first_name}} {{ post.last_name}}</div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="post-date">{{ post.created_data | date }}</div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="post-title">
+                            {{post.post_title}}
+                        </div>
+                        <div class="post-description">
+                            This is a nice post with some sample description
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <img class="post-img" src="../../../assets/icons/fitness.png" alt="">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        likes dislike comment
                     </div>
                 </div>
             </div>
-           
-        </div> 
-    </div>
-    <div *ngIf="posts?.length == 0" class="row">
+        </div>
+    </div> 
+ </div>
+<div *ngIf="posts?.length == 0" class="row">
         No post available
-    </div>
 </div>
+
 

@@ -40,6 +40,8 @@ export class PostComponent implements OnInit, OnDestroy {
   getPosts() {
     this.postService.getPosts().subscribe({
       next: res => {
+        console.log(res);
+        
         this.posts = res;
       },
       error: err => {
