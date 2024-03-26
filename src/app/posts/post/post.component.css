@@ -23,7 +23,8 @@
     border: 3px solid #05445E;
     border-radius: 5px;
     padding: 20px;
-    margin: 70px 90px;
+    margin: 0 90px;
+    margin-bottom: 70px;
 }
 
 .post-date {
@@ -45,9 +46,8 @@
 }
 
 .post-title {
-    font-size: 40px;
+    font-size: 30px;
     font-weight: 600;
-    color: #05445E;
     margin-top: 15px;
     margin-bottom: 15px;
 }
@@ -57,6 +57,18 @@
     width: 100%;
     padding: 15px;
 }
+
+.post-feedback {
+    display: inline-flex;
+    margin-right: 15px;
+    cursor: pointer;
+}
+
+.feedback-count {
+    margin-left: 6px;
+}
+
+
 
 .options-row {
     display: flex;

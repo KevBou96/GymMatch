@@ -34,7 +34,18 @@
                 </div>
                 <div class="row">
                     <div class="col">
-                        likes dislike comment
+                        <div class="post-feedback">
+                            <a (click)="likePost()"><img src="../../../assets/icons/thumbs-up.png" height="20" width="20"></a>
+                            <div class="feedback-count">{{likes}}</div>
+                        </div>
+                        <div class="post-feedback">
+                            <a (click)="dislikePost()"><img src="../../../assets/icons/negative-vote.png" height="20" width="20"></a>
+                            <div class="feedback-count">{{dislikes}}</div>
+                        </div>
+                        <div class="post-feedback">
+                            <a (click)="openComments()"><img src="../../../assets/icons/comment.png" height="20" width="20" alt=""></a>
+                            <div class="feedback-count">10</div>
+                        </div>     
                     </div>
                 </div>
             </div>
