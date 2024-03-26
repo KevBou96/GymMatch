@@ -18,6 +18,9 @@ export class PostComponent implements OnInit, OnDestroy {
   singlePost: IPost;
   postObs: Subscription;
   viewPost = false;
+  likes: number = 0;
+  dislikes: number = 0;
+  commentsCount: number = 0;
 
   constructor(
     private postService: PostService,
@@ -91,6 +94,22 @@ export class PostComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.postObs.unsubscribe()
   }
+
+  likePost() {
+    console.log('liked');
+    this.likes += 1
+  }
+
+  dislikePost() {
+    this.dislikes += 1;
+    console.log('disliked');
+  }
+
+  openComments() {
+    console.log('comments opened');
+    
+  }
 }
+
 
 // background-color: #f3f2f1;
