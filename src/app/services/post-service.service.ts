@@ -131,6 +131,33 @@ export class PostService {
       )
   }
 
+  likePost(post_id: number | undefined, user_id: number | undefined) {
+    const body = {
+      post_id,
+      user_id
+    }
+    return this.http.post<any>(
+      `http://localhost:8080/feed/post/like`, body,
+    {
+      headers: new HttpHeaders({
+        'Authorization' : 'Bearer ' + this.token
+      }),
+      observe: 'response'
+    },
+    ).pipe(
+      map((res: any) => {
+        if (res.status == 200 || res.status == 201) {
+          return res.body
+        }
+        else {
+          throw 'error'
+        }
+      }), catchError(err => {
+        throw err
+      })
+    )
+  }
+
   addPost(post: IPost) {
     this.posts.push(post);
     this.postChanged.next(this.posts.slice());

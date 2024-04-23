@@ -10,6 +10,8 @@ export interface IPost {
     image: File,
     imgurl?: string,
     created_data?: Date,
+    user_id?: number,
+    likes?: number,
     first_name: string,
     last_name: string
 }

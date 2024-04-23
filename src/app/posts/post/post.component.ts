@@ -42,7 +42,7 @@ export class PostComponent implements OnInit, OnDestroy {
 
   getPosts() {
     this.postService.getPosts().subscribe({
-      next: res => {
+      next: (res: IPost[]) => {
         console.log(res);
         
         this.posts = res;
@@ -95,9 +95,20 @@ export class PostComponent implements OnInit, OnDestroy {
     this.postObs.unsubscribe()
   }
 
-  likePost() {
+  likePost(post_id: number | undefined, user_id: number | undefined) {
     console.log('liked');
-    this.likes += 1
+    this.postService.likePost(post_id, user_id).subscribe({
+      next: res => {
+        console.log(res);
+        
+        if (res.message === 'POST_LIKED_SUCCESS') {
+          console.log(res.postId);
+        }
+      },
+      error: err => {
+        console.log(err);  
+      }
+    })
   }
 
   dislikePost() {
