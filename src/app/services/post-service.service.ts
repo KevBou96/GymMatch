@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, ɵgetUnknownElementStrictMode } from '@angular/core';
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { IPost, IPostResponseData } from '../interfaces/post.interface';
 import { Subject, of, throwError } from 'rxjs';
@@ -150,6 +150,31 @@ export class PostService {
           return res.body
         }
         else {
+          throw 'error'
+        }
+      }), catchError(err => {
+        throw err
+      })
+    )
+  }
+
+  dislikePost(post_id: number | undefined, user_id: number | undefined) {
+    const body = {
+      post_id,
+      user_id
+    }
+    return this.http.post<any>(`http://localhost:8080/feed/post/dislike`, body, 
+      {
+        headers: new HttpHeaders({
+         'Authorization' : 'Bearer ' + this.token
+        }),
+        observe: 'response'
+      },
+    ).pipe(
+      map((res: any) => {
+        if (res.status === 200 || res.status === 201) {
+          return res.body
+        } else {
           throw 'error'
         }
       }), catchError(err => {

@@ -6,6 +6,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { CreatePostModalComponent } from 'src/app/modal/create-post-modal/create-post-modal.component';
 import { LoginComponent } from 'src/app/auth/login/login.component';
 import { SocketService } from 'src/app/services/socket.service';
+import { IUser } from 'src/app/interfaces/user.interface';
+import { UsersService } from 'src/app/services/users.service';
 
 @Component({
   selector: 'app-post',
@@ -21,11 +23,13 @@ export class PostComponent implements OnInit, OnDestroy {
   likes: number = 0;
   dislikes: number = 0;
   commentsCount: number = 0;
+  user: IUser | null;
 
   constructor(
     private postService: PostService,
     private matDialog: MatDialog,
     private socketService: SocketService,
+    private userService: UsersService
     ) {}
   
 
@@ -34,6 +38,9 @@ export class PostComponent implements OnInit, OnDestroy {
     this.getPosts();
     this.postObs = this.postService.postChanged.subscribe((posts: IPost[]) => {
       this.posts = posts;
+    })
+    this.userService.user.subscribe(user => {
+      this.user = user;
     })
     this.socketService.getPost().subscribe((post: IPost) => {
       this.posts.unshift(post)
@@ -95,14 +102,11 @@ export class PostComponent implements OnInit, OnDestroy {
     this.postObs.unsubscribe()
   }
 
-  likePost(post_id: number | undefined, user_id: number | undefined) {
-    console.log('liked');
-    this.postService.likePost(post_id, user_id).subscribe({
+  likePost(post_id: number | undefined, i: number) {
+    this.postService.likePost(post_id, this.user?.userId).subscribe({
       next: res => {
-        console.log(res);
-        
         if (res.message === 'POST_LIKED_SUCCESS') {
-          console.log(res.postId);
+          this.posts[i].likes = res.likes;
         }
       },
       error: err => {
@@ -111,8 +115,17 @@ export class PostComponent implements OnInit, OnDestroy {
     })
   }
 
-  dislikePost() {
-    this.dislikes += 1;
+  dislikePost(post_id: number | undefined, i: number) {
+    this.postService.dislikePost(post_id, this.user?.userId).subscribe({
+      next: res => {
+        if (res.message === 'POST_DISLIKE_SUCCESS') {
+          this.posts[i].dislikes = res.dislikes;
+        }
+      },
+      error: err => {
+       console.log(err);
+      }
+    })
     console.log('disliked');
   }
 
