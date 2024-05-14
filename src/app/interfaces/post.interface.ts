@@ -12,6 +12,7 @@ export interface IPost {
     created_data?: Date,
     user_id?: number,
     likes?: number,
+    dislikes?: number,
     first_name: string,
     last_name: string
 }
