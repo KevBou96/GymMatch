@@ -105,6 +105,8 @@ export class PostComponent implements OnInit, OnDestroy {
   likePost(post_id: number | undefined, i: number) {
     this.postService.likePost(post_id, this.user?.userId).subscribe({
       next: res => {
+        console.log(res);
+        
         if (res.message === 'POST_LIKED_SUCCESS') {
           this.posts[i].likes = res.likes;
         }
@@ -118,6 +120,8 @@ export class PostComponent implements OnInit, OnDestroy {
   dislikePost(post_id: number | undefined, i: number) {
     this.postService.dislikePost(post_id, this.user?.userId).subscribe({
       next: res => {
+        console.log(res);
+        
         if (res.message === 'POST_DISLIKE_SUCCESS') {
           this.posts[i].dislikes = res.dislikes;
         }
