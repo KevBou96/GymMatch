@@ -24,10 +24,9 @@ export class HeaderComponent implements OnInit {
         this.user = user;      
       }
     })
-    this.socketService.getNotification().subscribe((data: any) => {
-      console.log(data);
-      
-    })
+    // this.socketService.getNotification().subscribe((data: any) => {
+    //   console.log(data);
+    // })
     
   }
  
