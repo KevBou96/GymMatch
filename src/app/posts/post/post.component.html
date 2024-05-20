@@ -37,10 +37,12 @@
                         <div class="post-feedback">
                             <a (click)="likePost(post.post_id, i)"><img src="../../../assets/icons/like-button-icon.svg" height="25" width="25"></a>
                             <div class="feedback-count">{{post.likes}}</div>
+                            <div class="feedback-count">{{post.liked}}</div>
                         </div>
                         <div class="post-feedback">
                             <a (click)="dislikePost(post.post_id, i)"><img src="../../../assets/icons/dislike-button-icon.svg" height="25" width="25"></a>
                             <div class="feedback-count">{{post.dislikes}}</div>
+                            <div class="feedback-count">{{post.disliked}}</div>
                         </div>
                         <div class="post-feedback">
                             <a (click)="openComments()"><img src="../../../assets/icons/comment.png" height="20" width="20" alt=""></a>

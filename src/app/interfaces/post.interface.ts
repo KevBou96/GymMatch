@@ -14,5 +14,7 @@ export interface IPost {
     likes?: number,
     dislikes?: number,
     first_name: string,
-    last_name: string
+    last_name: string,
+    liked?: boolean,
+    disliked?: boolean
 }
