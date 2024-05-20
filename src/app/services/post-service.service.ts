@@ -131,10 +131,11 @@ export class PostService {
       )
   }
 
-  likePost(post_id: number | undefined, user_id: number | undefined) {
+  likePost(post_id: number | undefined, user_id: number | undefined, likeStatus: boolean | undefined) {
     const body = {
       post_id,
-      user_id
+      user_id,
+      likeStatus
     }
     return this.http.post<any>(
       `http://localhost:8080/feed/post/like`, body,
@@ -158,10 +159,11 @@ export class PostService {
     )
   }
 
-  dislikePost(post_id: number | undefined, user_id: number | undefined) {
+  dislikePost(post_id: number | undefined, user_id: number | undefined, dislikeStatus: boolean | undefined) {
     const body = {
       post_id,
-      user_id
+      user_id,
+      dislikeStatus
     }
     return this.http.post<any>(`http://localhost:8080/feed/post/dislike`, body, 
       {

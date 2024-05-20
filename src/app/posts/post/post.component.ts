@@ -102,13 +102,14 @@ export class PostComponent implements OnInit, OnDestroy {
     this.postObs.unsubscribe()
   }
 
-  likePost(post_id: number | undefined, i: number) {
-    this.postService.likePost(post_id, this.user?.userId).subscribe({
+  likePost(post_id: number | undefined, i: number) {    
+    this.postService.likePost(post_id, this.user?.userId, this.posts[i].liked).subscribe({
       next: res => {
-        console.log(res);
-        
-        if (res.message === 'POST_LIKED_SUCCESS') {
-          this.posts[i].likes = res.likes;
+        this.posts[i].likes = res.likes_count;
+        if (res.message === 'LIKED_SUCCESS') {
+          this.posts[i].liked = true;
+        } else {
+          this.posts[i].liked = false;
         }
       },
       error: err => {
@@ -118,19 +119,20 @@ export class PostComponent implements OnInit, OnDestroy {
   }
 
   dislikePost(post_id: number | undefined, i: number) {
-    this.postService.dislikePost(post_id, this.user?.userId).subscribe({
+    this.postService.dislikePost(post_id, this.user?.userId, this.posts[i].disliked).subscribe({
       next: res => {
         console.log(res);
-        
-        if (res.message === 'POST_DISLIKE_SUCCESS') {
-          this.posts[i].dislikes = res.dislikes;
+        this.posts[i].dislikes = res.dislikes_count;
+        if (res.message === 'DISLIKED_SUCCESS') {
+          this.posts[i].disliked = true;
+        } else {
+          this.posts[i].disliked = false;
         }
       },
       error: err => {
        console.log(err);
       }
     })
-    console.log('disliked');
   }
 
   openComments() {
