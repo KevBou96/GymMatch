@@ -35,14 +35,23 @@
                 <div class="row">
                     <div class="col">
                         <div class="post-feedback">
-                            <a (click)="likePost(post.post_id, i)"><img src="../../../assets/icons/like-button-icon.svg" height="25" width="25"></a>
+                            <button type="button" class="feedback-btn" (click)="likePost(post.post_id, i)">
+                                <svg id="Layer_1" data-name="Layer 1" class="svg-image" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                                    <path *ngIf="!post.liked" class="cls-1" d="M 12.877 19 H 7.123 A 1.125 1.125 0 0 1 6 17.877 V 11 H 2.126 a 1.114 1.114 0 0 1 -1.007 -0.7 a 1.249 1.249 0 0 1 0.171 -1.343 L 9.166 0.368 a 1.128 1.128 0 0 1 1.668 0.004 l 7.872 8.581 a 1.25 1.25 0 0 1 0.176 1.348 a 1.113 1.113 0 0 1 -1.005 0.7 H 14 v 6.877 A 1.125 1.125 0 0 1 12.877 19 Z M 7.25 17.75 h 5.5 v -8 h 4.934 L 10 1.31 L 2.258 9.75 H 7.25 v 8 Z M 2.227 9.784 l -0.012 0.016 c 0.01 -0.006 0.014 -0.01 0.012 -0.016 Z"/>
+                                    <path *ngIf="post.liked" class="cls-2" d="M 18.706 8.953 L 10.834 0.372 A 1.123 1.123 0 0 0 10 0 a 1.128 1.128 0 0 0 -0.833 0.368 L 1.29 8.957 a 1.249 1.249 0 0 0 -0.171 1.343 a 1.114 1.114 0 0 0 1.007 0.7 H 6 v 6.877 A 1.125 1.125 0 0 0 7.123 19 h 5.754 A 1.125 1.125 0 0 0 14 17.877 V 11 h 3.877 a 1.114 1.114 0 0 0 1.005 -0.7 a 1.251 1.251 0 0 0 -0.176 -1.347 Z"/>
+                                  
+                                </svg>
+                            </button>
                             <div class="feedback-count">{{post.likes}}</div>
-                            <div class="feedback-count">{{post.liked}}</div>
                         </div>
                         <div class="post-feedback">
-                            <a (click)="dislikePost(post.post_id, i)"><img src="../../../assets/icons/dislike-button-icon.svg" height="25" width="25"></a>
+                            <button (click)="dislikePost(post.post_id, i)" type="button" class="feedback-btn">
+                                <svg id="Layer_1" data-name="Layer 1" class="svg-image" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                                    <path *ngIf="!post.disliked" class="cls-1" d="M 10 20 a 1.122 1.122 0 0 1 -0.834 -0.372 l -7.872 -8.581 A 1.251 1.251 0 0 1 1.118 9.7 A 1.114 1.114 0 0 1 2.123 9 H 6 V 2.123 A 1.125 1.125 0 0 1 7.123 1 h 5.754 A 1.125 1.125 0 0 1 14 2.123 V 9 h 3.874 a 1.114 1.114 0 0 1 1.007 0.7 a 1.25 1.25 0 0 1 -0.171 1.345 l -7.876 8.589 A 1.128 1.128 0 0 1 10 20 Z m -7.684 -9.75 L 10 18.69 l 7.741 -8.44 H 12.75 v -8 h -5.5 v 8 H 2.316 Z m 15.469 -0.05 c -0.01 0 -0.014 0.007 -0.012 0.013 l 0.012 -0.013 Z"/>
+                                    <path *ngIf="post.disliked" class="cls-2" d="M 18.88 9.7 a 1.114 1.114 0 0 0 -1.006 -0.7 H 14 V 2.123 A 1.125 1.125 0 0 0 12.877 1 H 7.123 A 1.125 1.125 0 0 0 6 2.123 V 9 H 2.123 a 1.114 1.114 0 0 0 -1.005 0.7 a 1.25 1.25 0 0 0 0.176 1.348 l 7.872 8.581 a 1.124 1.124 0 0 0 1.667 0.003 l 7.876 -8.589 A 1.248 1.248 0 0 0 18.88 9.7 Z"/>
+                                </svg>
+                            </button>
                             <div class="feedback-count">{{post.dislikes}}</div>
-                            <div class="feedback-count">{{post.disliked}}</div>
                         </div>
                         <div class="post-feedback">
                             <a (click)="openComments()"><img src="../../../assets/icons/comment.png" height="20" width="20" alt=""></a>
